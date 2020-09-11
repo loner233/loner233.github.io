@@ -32,6 +32,15 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>First Blog</title>
+      <link>http://localhost:1313/post/first-blog/</link>
+      <pubDate>Fri, 11 Sep 2020 23:32:05 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/first-blog/</guid>
+      <description>测试一下第一篇博文</description>
+    </item>
+    
+    <item>
       <title>This is a hidden post.</title>
       <link>http://localhost:1313/post/hidden-post/</link>
       <pubDate>Thu, 08 Mar 2018 17:40:19 +0800</pubDate>
