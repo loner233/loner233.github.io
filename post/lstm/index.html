@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>LSTM - Castle of Glass</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Loner" /><meta name="description" content="传统的RNN 其中： $x$表示当前状态的数据输入 $h$表示接受到的上一个节点的输入 $y$表示当前节点下的输出 $h^{&#39;}$ 表示传递到下一个节点的输出 Long Short Term" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
+
+
+<link rel="canonical" href="http://loner233.github.io/post/lstm/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.46e432cab0205a872fc473c5c5a55521696198b9fdc55b7e68db06ab0d9e504f.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="LSTM" />
+<meta property="og:description" content="传统的RNN 其中： $x$表示当前状态的数据输入 $h$表示接受到的上一个节点的输入 $y$表示当前节点下的输出 $h^{&#39;}$ 表示传递到下一个节点的输出 Long Short Term" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://loner233.github.io/post/lstm/" />
+<meta property="article:published_time" content="2020-09-16T22:33:45+08:00" />
+<meta property="article:modified_time" content="2020-09-16T22:33:45+08:00" />
+<meta itemprop="name" content="LSTM">
+<meta itemprop="description" content="传统的RNN 其中： $x$表示当前状态的数据输入 $h$表示接受到的上一个节点的输入 $y$表示当前节点下的输出 $h^{&#39;}$ 表示传递到下一个节点的输出 Long Short Term">
+<meta itemprop="datePublished" content="2020-09-16T22:33:45&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-16T22:33:45&#43;08:00" />
+<meta itemprop="wordCount" content="579">
+
+
+
+<meta itemprop="keywords" content="深度学习," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LSTM"/>
+<meta name="twitter:description" content="传统的RNN 其中： $x$表示当前状态的数据输入 $h$表示接受到的上一个节点的输入 $y$表示当前节点下的输出 $h^{&#39;}$ 表示传递到下一个节点的输出 Long Short Term"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Castle of Glass</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Castle of Glass</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">LSTM</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-09-16 </span>
+        <div class="post-category">
+            <a href="/categories/algorithm/"> Algorithm </a>
+            </div>
+          <span class="more-meta"> 579 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#传统的rnn">传统的RNN</a></li>
+    <li><a href="#long-short-term-memoryaka-lstm">Long Short Term Memory(a.k.a. LSTM)</a></li>
+    <li><a href="#lstm内部">LSTM内部</a>
+      <ul>
+        <li><a href="#四个状态">四个状态</a></li>
+        <li><a href="#四个状态的作用">四个状态的作用</a></li>
+      </ul>
+    </li>
+    <li><a href="#lstm内部主要有三个阶段">LSTM内部主要有三个阶段：</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="传统的rnn">传统的RNN</h1>
+<p><img src="/images/lstm/bc047e94.jpg" alt="Local Picture" title="传统的RNN"></p>
+<p>其中：</p>
+<ul>
+<li>$x$表示当前状态的数据输入</li>
+<li>$h$表示接受到的上一个节点的输入</li>
+<li>$y$表示当前节点下的输出</li>
+<li>$h^{'}$ 表示传递到下一个节点的输出</li>
+</ul>
+<h1 id="long-short-term-memoryaka-lstm">Long Short Term Memory(a.k.a. LSTM)</h1>
+<p><img src="/images/lstm/24d8b2fd.jpg" alt="Local Picture" title="LSTM"></p>
+<p>显然,  LSTM有两个传递状态(RNN中的$h^t$相对于LSTM中的$c^t$):</p>
+<ol>
+<li>$c^t$(cell state)</li>
+<li>$h^t$（hidden state）</li>
+</ol>
+<h1 id="lstm内部">LSTM内部</h1>
+<h2 id="四个状态">四个状态</h2>
+<p>首先根据LSTM的当前输入$x^t$和上一个状态传递下来的$h^{t-1}$拼接训练得到四个状态。</p>
+<p><img src="/images/lstm/1d49121e.jpg" alt="Local Picture">
+<img src="/images/lstm/daf9116d.jpg" alt="Local Picture"></p>
+<p>其中：</p>
+<ul>
+<li>$z^f,z^i,z^o$是拼接向量乘以权重矩阵之后，在通过激活函数$sigmoid$转换成0-1之间的数值，来作文一种门控信号</li>
+<li>$z$则是将结果通过一个$tanh$激活函数转换成-1到1之间的值,这里用tanh是因为将其作为输入数据，而不是门控信号。</li>
+</ul>
+<h2 id="四个状态的作用">四个状态的作用</h2>
+<p><img src="/images/lstm/bf2c1637.jpg" alt="Local Picture"></p>
+<ul>
+<li>$\odot$ 是Hadamard Product，也就是操作矩阵中对应的元素相乘，因此要求两个相乘矩阵是同型的。</li>
+<li>$\oplus$ 则代表进行矩阵加法。</li>
+</ul>
+<h1 id="lstm内部主要有三个阶段">LSTM内部主要有三个阶段：</h1>
+<ul>
+<li>忘记阶段
+这个阶段主要是针对上一个节点的输入来进行选择性忘记。（记住重要的，忘记不重要的），主要通过$z^f$来作为忘记门控</li>
+<li>选择记忆阶段
+这个阶段将对输入有选择性的进行记忆，主要是针对输入$x^t$进行选择性记忆。主要通过$z^i$进行控制</li>
+<li>输出阶段
+这个阶段决定那些将会被当成当前状态的输出。主要是$z^o$来进行控制，同时还会对上一阶段得到的$c^o$进行缩放</li>
+</ul>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/first-blog/">
+            <span class="next-text nav-default">First Blog</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yinjiakang@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/7407314/loner233" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/loner233" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://loner233.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Loner</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

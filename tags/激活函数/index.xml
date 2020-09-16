@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>激活函数 on Castle of Glass</title>
+    <link>http://loner233.github.io/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</link>
+    <description>Recent content in 激活函数 on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Sep 2019 09:10:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://loner233.github.io/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gaussian Error Linear Unit(A.K.A gelu)</title>
+      <link>http://loner233.github.io/post/gaussian-error-linear-unita.k.a-gelu/</link>
+      <pubDate>Thu, 19 Sep 2019 09:10:00 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/gaussian-error-linear-unita.k.a-gelu/</guid>
+      <description>正态分布 得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$ 此时,当$(\mu=0,\sigma=1)</description>
+    </item>
+    
+  </channel>
+</rss>
