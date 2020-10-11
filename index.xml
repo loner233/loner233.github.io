@@ -6,11 +6,7 @@
     <description>Recent content on Castle of Glass</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 20 Aug 2017 21:38:52 +0800</lastBuildDate>
-    
-	<atom:link href="http://loner233.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 11 Oct 2020 10:39:48 +0800</lastBuildDate><atom:link href="http://loner233.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>http://loner233.github.io/about/</link>
@@ -20,6 +16,15 @@
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>Softmax的溢出问题</title>
+      <link>http://loner233.github.io/post/softmax%E7%9A%84%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 11 Oct 2020 10:39:48 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/softmax%E7%9A%84%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98/</guid>
+      <description>在上次实现softmax regression的时候就遇到了softmax溢出，导致了nan的问题，当时做了点优化，但是还是有一定的几率出现溢</description>
     </item>
     
     <item>
