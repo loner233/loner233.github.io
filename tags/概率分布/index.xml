@@ -13,7 +13,8 @@
       <pubDate>Thu, 19 Sep 2019 09:24:10 +0800</pubDate>
       
       <guid>http://loner233.github.io/post/%E6%BB%A1%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83/</guid>
-      <description>MCMC方法的目标分布 通常是多元联合概率分布$p(x) = p(x_1,x_2,&amp;hellip;,x_k)$,其中$x = (x_1,x_2,&amp;he</description>
+      <description>&lt;h1 id=&#34;mcmc方法的目标分布&#34;&gt;MCMC方法的目标分布&lt;/h1&gt;
+&lt;p&gt;通常是多元联合概率分布$p(x) = p(x_1,x_2,&amp;hellip;,x_k)$,其中$x = (x_1,x_2,&amp;hellip;,x_k)^T$为$k$维随机变量&lt;/p&gt;</description>
     </item>
     
   </channel>

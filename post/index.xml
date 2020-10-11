@@ -22,7 +22,8 @@
       <pubDate>Sun, 11 Oct 2020 11:37:21 +0800</pubDate>
       
       <guid>http://loner233.github.io/post/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F/</guid>
-      <description></description>
+      <description>&lt;p&gt;$$P(A|B)=\frac{P(B|A)}{P(B)}*P(A)$$&lt;/p&gt;
+&lt;p&gt;以前一直理解贝叶斯公式为概率转换的，也就是先验，后验转换。现在看到了一种更好的解释&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,17 +32,7 @@
       <pubDate>Sun, 11 Oct 2020 11:32:40 +0800</pubDate>
       
       <guid>http://loner233.github.io/post/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</guid>
-      <description>&lt;h1 id=&#34;cross-entropy交叉熵&#34;&gt;Cross Entropy(交叉熵)&lt;/h1&gt;
-&lt;p&gt;假设真实概率:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;$P(Y = 0) = p$&lt;/li&gt;
-&lt;li&gt;$P(Y = 1) = 1 - p$&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;预测概率为:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;$P(\hat{Y} = 0) = \frac{1}{1 + e^{-x}} = \hat{p}$&lt;/li&gt;
-&lt;li&gt;$P(\hat{Y} = 1) = 1 - \frac{1}{1 + e^{-x}} = 1 - \hat{p}$&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -77,7 +68,8 @@
       <pubDate>Thu, 19 Sep 2019 09:24:10 +0800</pubDate>
       
       <guid>http://loner233.github.io/post/%E6%BB%A1%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83/</guid>
-      <description>MCMC方法的目标分布 通常是多元联合概率分布$p(x) = p(x_1,x_2,&amp;hellip;,x_k)$,其中$x = (x_1,x_2,&amp;he</description>
+      <description>&lt;h1 id=&#34;mcmc方法的目标分布&#34;&gt;MCMC方法的目标分布&lt;/h1&gt;
+&lt;p&gt;通常是多元联合概率分布$p(x) = p(x_1,x_2,&amp;hellip;,x_k)$,其中$x = (x_1,x_2,&amp;hellip;,x_k)^T$为$k$维随机变量&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -86,7 +78,7 @@
       <pubDate>Thu, 19 Sep 2019 09:10:00 +0800</pubDate>
       
       <guid>http://loner233.github.io/post/gaussian-error-linear-unita.k.a-gelu/</guid>
-      <description>正态分布 得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$ 此时,当$(\mu=0,\sigma=1)</description>
+      <description></description>
     </item>
     
     <item>
