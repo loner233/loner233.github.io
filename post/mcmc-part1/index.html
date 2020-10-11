@@ -165,7 +165,7 @@
 <p>$$\theta = \int_{a}^{b}f(x)dx$$</p>
 <p>如果很难求出$f(x)$的原函数，那么这个积分比较男求解。当然可以通过MC Method来模拟求解近似值。
 假设函数图像图下如：
-<img src="images/mcmc_part1/65dfa7a5.png" alt="Local Picture" title="函数图像"></p>
+<img src="/images/mcmc_part1/65dfa7a5.png" alt="Local Picture" title="函数图像"></p>
 <h4 id="一个简单的近似求解的方法">一个简单的近似求解的方法</h4>
 <ul>
 <li>在$[a,b]$之间随机采样一个点，记为$x_0$</li>
@@ -198,7 +198,7 @@
 <blockquote>
 <p>既然$p(x)$太复杂而在程序中无法直接采样,那么可以设定一个可采样的分布$q(x)$(如高斯分布),然后按一定的方法拒绝某些样本,以达到接近$p(x)$分布的目的,其中$q(x)$叫做proposal distribution.</p>
 </blockquote>
-<p><img src="images/mcmc_part1/d3a63990.png" alt="Local Picture" title="函数图像">
+<p><img src="/images/mcmc_part1/d3a63990.png" alt="Local Picture" title="函数图像">
 设定一个方便采样的常用概率分布$q(x)$,以及一个常量$k$,使得$p(x)$(真实概率分布)总是在$kq(x)$的下方</p>
 <ul>
 <li>首先,采样得到$q(x)$的一个样本$z_0$,以前述方式进行采样</li>
