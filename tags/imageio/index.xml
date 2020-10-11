@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>imageio on Castle of Glass</title>
+    <link>http://loner233.github.io/tags/imageio/</link>
+    <description>Recent content in imageio on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 20:25:03 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/imageio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python中的imageio</title>
+      <link>http://loner233.github.io/post/python%E4%B8%AD%E7%9A%84imageio/</link>
+      <pubDate>Sun, 11 Oct 2020 20:25:03 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E4%B8%AD%E7%9A%84imageio/</guid>
+      <description>imageio的操作 ps:公司的电脑是windows的，正斜杠和反斜杠实在蛋疼，上次hadoop在windows上运行的权限问题已经使我非常</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tqdm on Castle of Glass</title>
+    <link>http://loner233.github.io/tags/tqdm/</link>
+    <description>Recent content in tqdm on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 20:12:15 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/tqdm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tqdm模块</title>
+      <link>http://loner233.github.io/post/tqdm%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Sun, 11 Oct 2020 20:12:15 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/tqdm%E6%A8%A1%E5%9D%97/</guid>
+      <description>&lt;p&gt;&lt;code&gt;tqdm&lt;/code&gt;有三种主要的方法&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

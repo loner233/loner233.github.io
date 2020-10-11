@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Numpy on Castle of Glass</title>
+    <link>http://loner233.github.io/tags/numpy/</link>
+    <description>Recent content in Numpy on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 20:19:43 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/numpy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Numpy中一些神奇的点</title>
+      <link>http://loner233.github.io/post/numpy%E4%B8%AD%E4%B8%80%E4%BA%9B%E7%A5%9E%E5%A5%87%E7%9A%84%E7%82%B9/</link>
+      <pubDate>Sun, 11 Oct 2020 20:19:43 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/numpy%E4%B8%AD%E4%B8%80%E4%BA%9B%E7%A5%9E%E5%A5%87%E7%9A%84%E7%82%B9/</guid>
+      <description>&lt;p&gt;只是用来记录一些比较容易被忽略但是又有点实用的点&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Numpy中的clip</title>
+      <link>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84clip/</link>
+      <pubDate>Sun, 11 Oct 2020 20:14:53 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84clip/</guid>
+      <description>&lt;p&gt;numpy.clip(a, a_min, a_max, out=None)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Numpy中的newaxis</title>
+      <link>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84newaxis/</link>
+      <pubDate>Sun, 11 Oct 2020 19:57:53 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84newaxis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Numpy中的outer的应用</title>
+      <link>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84outer%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Sun, 11 Oct 2020 19:45:01 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84outer%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;对于多维向量，全部展开为一维向量&lt;/li&gt;
+&lt;li&gt;第一个参数表示倍数，使得第二个向量每次变为几倍&lt;/li&gt;
+&lt;li&gt;地一个参数确定结果的行，第二个参数确定结果的列&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

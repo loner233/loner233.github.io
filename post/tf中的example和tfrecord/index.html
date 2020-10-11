@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>tf中的Example和TFRecord - Castle of Glass</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Loner" /><meta name="description" content="tf.Example 实际上tf.Example就是一个{&amp;quot;string&amp;quot;:tf.train.Feature}的映射
+tf.train.Feature消息类型可以接受以下三种类型中的一中
+" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3 with theme even" />
+
+
+<link rel="canonical" href="http://loner233.github.io/post/tf%E4%B8%AD%E7%9A%84example%E5%92%8Ctfrecord/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="tf中的Example和TFRecord" />
+<meta property="og:description" content="tf.Example
+实际上tf.Example就是一个{&quot;string&quot;:tf.train.Feature}的映射
+tf.train.Feature消息类型可以接受以下三种类型中的一中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://loner233.github.io/post/tf%E4%B8%AD%E7%9A%84example%E5%92%8Ctfrecord/" />
+<meta property="article:published_time" content="2020-10-11T15:54:24+08:00" />
+<meta property="article:modified_time" content="2020-10-11T15:54:24+08:00" />
+<meta itemprop="name" content="tf中的Example和TFRecord">
+<meta itemprop="description" content="tf.Example
+实际上tf.Example就是一个{&quot;string&quot;:tf.train.Feature}的映射
+tf.train.Feature消息类型可以接受以下三种类型中的一中">
+<meta itemprop="datePublished" content="2020-10-11T15:54:24+08:00" />
+<meta itemprop="dateModified" content="2020-10-11T15:54:24+08:00" />
+<meta itemprop="wordCount" content="1841">
+
+
+
+<meta itemprop="keywords" content="Tensorflow," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="tf中的Example和TFRecord"/>
+<meta name="twitter:description" content="tf.Example
+实际上tf.Example就是一个{&quot;string&quot;:tf.train.Feature}的映射
+tf.train.Feature消息类型可以接受以下三种类型中的一中"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Castle of Glass</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Castle of Glass</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">tf中的Example和TFRecord</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-11 </span>
+        <div class="post-category">
+            <a href="/categories/coding/"> Coding </a>
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"> 深度学习 </a>
+            </div>
+          <span class="more-meta"> 1841 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tfexample"><code>tf.Example</code></a>
+          <ul>
+            <li><a href="#创建一个tfexample消息">创建一个<code>tf.Example</code>消息</a></li>
+          </ul>
+        </li>
+        <li><a href="#tfrecord"><code>tf.Record</code></a>
+          <ul>
+            <li><a href="#tfrecord使用tfdatatfdata见tfdata笔记">TFRecord使用tf.data（tf.data见tf.data笔记)</a></li>
+            <li><a href="#读写tfrecord文件">读写TFRecord文件：</a></li>
+          </ul>
+        </li>
+        <li><a href="#tfexample和tfrecord续">tf.Example和TFRecord(续)</a>
+          <ul>
+            <li><a href="#使用tfio来针对tfrecord进行写操作">使用<code>tf.io</code>来针对TFRecord进行写操作</a></li>
+            <li><a href="#将图片写入tfrecord">将图片写入TFRecord</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="tfexample"><code>tf.Example</code></h2>
+<p>实际上<code>tf.Example</code>就是一个<code>{&quot;string&quot;:tf.train.Feature}</code>的映射<br>
+<code>tf.train.Feature</code>消息类型可以接受以下三种类型中的一中</p>
+<ul>
+<li><code>tf.train.BytesList</code>(可以包裹下面的类型)
+<ul>
+<li><code>string</code></li>
+<li><code>byte</code></li>
+</ul>
+</li>
+<li><code>tf.train.FloatList</code>(可以包裹下面的类型)
+<ul>
+<li><code>float(float32)</code></li>
+<li><code>double(float64)</code></li>
+</ul>
+</li>
+<li><code>tf.train.Int64List</code>(可以包裹下面的类型)
+<ul>
+<li><code>bool</code></li>
+<li><code>enum</code></li>
+<li><code>int32</code></li>
+<li><code>uint32</code></li>
+<li><code>int64</code></li>
+<li><code>uint64</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>为了将标准的TensorFlow类型转换成<code>tf.Example</code>可用的<code>tf.train.Feature</code>，可以使用一下的方法</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># The following functions can be used to convert a value to a type compatible</span>
+<span class="c1"># with tf.Example.</span>
+<span class="k">def</span> <span class="nf">_bytes_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns a bytes_list from a string / byte.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">bytes_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">BytesList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">_float_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns a float_list from a float / double.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">float_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">FloatList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">_int64_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns an int64_list from a bool / enum / int / uint.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">int64_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Int64List</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>所有的消息都能通过使用<code>.SerializeToString</code>序列化成<code>binary-string</code></strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">feaure</span> <span class="o">=</span> <span class="n">_float_feature</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">feature</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建一个tfexample消息">创建一个<code>tf.Example</code>消息</h3>
+<p>其实主要就是三个步骤</p>
+<ul>
+<li>将每一value转换成<code>tf.train.Feature</code>，其包含三种兼容的类型，可以使用上面的函数进行转换</li>
+<li>创建一个映射（dict），具体就是string类型的‘feature name’：<code>tf.train.Feature</code></li>
+<li>把上面的映射（dict）转换成<code>tf.train.Features</code>,然后再传入<code>tf.train.Example</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">serialize_example</span><span class="p">(</span><span class="n">feature0</span><span class="p">,</span> <span class="n">feature1</span><span class="p">,</span> <span class="n">feature2</span><span class="p">,</span> <span class="n">feature3</span><span class="p">):</span>
+    <span class="n">feature</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;feature0&#39;</span><span class="p">:</span> <span class="n">_int64_feature</span><span class="p">(</span><span class="n">feature0</span><span class="p">),</span>
+        <span class="s1">&#39;feature1&#39;</span><span class="p">:</span> <span class="n">_int64_feature</span><span class="p">(</span><span class="n">feature1</span><span class="p">),</span>
+        <span class="s1">&#39;feature2&#39;</span><span class="p">:</span> <span class="n">_bytes_feature</span><span class="p">(</span><span class="n">feature2</span><span class="p">),</span>
+        <span class="s1">&#39;feature3&#39;</span><span class="p">:</span> <span class="n">_float_feature</span><span class="p">(</span><span class="n">feature3</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="n">example_proto</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Example</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Features</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="n">feature</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">example_proto</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">()</span>
+<span class="n">example_observation</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">serialized_example</span> <span class="o">=</span> <span class="n">serialize_example</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;goat&#39;</span><span class="p">,</span> <span class="mf">0.9876</span><span class="p">)</span>
+<span class="n">example_proto</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Example</span><span class="o">.</span><span class="n">FromString</span><span class="p">(</span><span class="n">serialized_example</span><span class="p">)</span>
+<span class="n">example_proto</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="tfrecord"><code>tf.Record</code></h2>
+<blockquote>
+<p>A TFRecord file contains a sequence of records. The file can only be read sequentially.</p>
+</blockquote>
+<p>TFRecord文件包含一串records，这个文件只能被按序读取。<br>
+每一个<code>record</code>包含一个byte-string作为数据载荷、数据长度和一个CRC32C哈希（用于完整性检查）<br>
+每个record的格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">uint64 length
+uint32 masked_crc32_of_length
+byte   data[length]
+uint32 masked_crc32_of_data
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Note：并不是一定要在TFRecord中使用<code>tf.Example</code>,<code>tf.Example</code>只是一个用来将dict序列化成byte-strings的方法</strong></p>
+<h3 id="tfrecord使用tfdatatfdata见tfdata笔记">TFRecord使用tf.data（tf.data见tf.data笔记)</h3>
+<p><code>tf.data.Dataset.map</code>有一个<code>map</code>方法，只不过这个方法一定是只能用于TensorFlow的图模式—— 他必须操作和返回<code>tf.Tensors</code>，一个不使用Tensor的函数，可以使用<code>tf.py_function</code>获得兼容性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">tf_serialize_example</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">):</span>
+    <span class="n">tf_string</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">py_function</span><span class="p">(</span>
+        <span class="n">serialize_example_pyfunction</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">),</span>  <span class="c1"># pass these args to the above function.</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>      <span class="c1"># the return type is tf.string</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf_string</span><span class="p">,</span> <span class="p">())</span> <span class="c1"># The result is a scalar</span>
+        
+<span class="n">serialized_features_dataset</span> <span class="o">=</span> <span class="n">features_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tf_serialize_example</span><span class="p">)</span>   <span class="c1">#这样才能在map中使用个这个兼容了Tensor的函数</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="读写tfrecord文件">读写TFRecord文件：</h3>
+<ul>
+<li>写</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;test.tfrecord&#39;</span>
+<span class="n">writer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">TFRecordWriter</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">serialized_features_dataset</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>读（使用<code>tf.data.TFRecordDataset</code>)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">filename</span><span class="p">]</span>
+<span class="n">raw_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TFRecordDataset</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+<span class="c1"># 这个feature_description必须存在，因为dataset使用图执行，需要这个函数来构建shape和type签名</span>
+<span class="n">feature_description</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;feature0&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s1">&#39;feature1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s1">&#39;feature2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;feature3&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">_parse_function</span><span class="p">(</span><span class="n">example_proto</span><span class="p">):</span>
+  <span class="c1"># Parse the input tf.Example proto using the dictionary above.</span>
+  <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">parse_single_example</span><span class="p">(</span><span class="n">example_proto</span><span class="p">,</span> <span class="n">feature_description</span><span class="p">)</span>
+<span class="n">parsed_dataset</span> <span class="o">=</span> <span class="n">raw_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_parse_function</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">parsed_record</span> <span class="ow">in</span> <span class="n">parsed_dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+  <span class="k">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">parsed_record</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="tfexample和tfrecord续">tf.Example和TFRecord(续)</h2>
+<h3 id="使用tfio来针对tfrecord进行写操作">使用<code>tf.io</code>来针对TFRecord进行写操作</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">
+<span class="k">def</span> <span class="nf">serialize_example</span><span class="p">(</span><span class="n">feature0</span><span class="p">,</span> <span class="n">feature1</span><span class="p">,</span> <span class="n">feature2</span><span class="p">,</span> <span class="n">feature3</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Creates a tf.Example message ready to be written to a file.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="c1"># Create a dictionary mapping the feature name to the tf.Example-compatible</span>
+    <span class="c1"># data type.</span>
+
+    <span class="n">feature</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;feature0&#39;</span><span class="p">:</span> <span class="n">_int64_feature</span><span class="p">(</span><span class="n">feature0</span><span class="p">),</span>
+        <span class="s1">&#39;feature1&#39;</span><span class="p">:</span> <span class="n">_int64_feature</span><span class="p">(</span><span class="n">feature1</span><span class="p">),</span>
+        <span class="s1">&#39;feature2&#39;</span><span class="p">:</span> <span class="n">_bytes_feature</span><span class="p">(</span><span class="n">feature2</span><span class="p">),</span>
+        <span class="s1">&#39;feature3&#39;</span><span class="p">:</span> <span class="n">_float_feature</span><span class="p">(</span><span class="n">feature3</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Create a Features message using tf.train.Example.</span>
+
+    <span class="n">example_proto</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Example</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Features</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="n">feature</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">example_proto</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">_bytes_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns a bytes_list from a string / byte.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">bytes_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">BytesList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">_float_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns a float_list from a float / double.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">float_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">FloatList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">_int64_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns an int64_list from a bool / enum / int / uint.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">int64_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Int64List</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+  
+<span class="c1"># the number of observations in the dataset</span>
+<span class="n">n_observations</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span>
+
+<span class="c1"># boolean feature, encoded as False or True</span>
+<span class="n">feature0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">],</span> <span class="n">n_observations</span><span class="p">)</span>
+
+<span class="c1"># integer feature, random from 0 .. 4</span>
+<span class="n">feature1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_observations</span><span class="p">)</span>
+
+<span class="c1"># string feature</span>
+<span class="n">strings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="sa">b</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;chicken&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;horse&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;goat&#39;</span><span class="p">])</span>
+<span class="n">feature2</span> <span class="o">=</span> <span class="n">strings</span><span class="p">[</span><span class="n">feature1</span><span class="p">]</span>
+
+<span class="c1"># float feature, from a standard normal distribution</span>
+<span class="n">feature3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_observations</span><span class="p">)</span>
+
+
+<span class="c1"># Write the `tf.Example` observations to the file.</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">TFRecordWriter</span><span class="p">(</span><span class="s2">&#34;test.tfrecord&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span> <span class="c1">#注意，这边在tf2中已经改为tf.io而不是tf.python_io</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_observations</span><span class="p">):</span>
+        <span class="n">example</span> <span class="o">=</span> <span class="n">serialize_example</span><span class="p">(</span><span class="n">feature0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feature1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feature2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feature3</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>暂时没找到如何通过io来进行读取，难道2.0里面只能通过<code>tf.data.TFRecordDataset</code>？？？</strong></p>
+<h3 id="将图片写入tfrecord">将图片写入TFRecord</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">
+<span class="k">def</span> <span class="nf">_bytes_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns a bytes_list from a string / byte.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">bytes_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">BytesList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">_float_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns a float_list from a float / double.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">float_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">FloatList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">_int64_feature</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Returns an int64_list from a bool / enum / int / uint.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">int64_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Int64List</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+
+<span class="n">cat_in_snow</span>  <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="s1">&#39;320px-Felis_catus-cat_on_snow.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;https://storage.googleapis.com/download.tensorflow.org/example_images/320px-Felis_catus-cat_on_snow.jpg&#39;</span><span class="p">)</span>
+<span class="n">williamsburg_bridge</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="s1">&#39;194px-New_East_River_Bridge_from_Brooklyn_det.4a09796u.jpg&#39;</span><span class="p">,</span><span class="s1">&#39;https://storage.googleapis.com/download.tensorflow.org/example_images/194px-New_East_River_Bridge_from_Brooklyn_det.4a09796u.jpg&#39;</span><span class="p">)</span>
+
+<span class="n">image_labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">cat_in_snow</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">williamsburg_bridge</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">image_string</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">cat_in_snow</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">label</span> <span class="o">=</span> <span class="n">image_labels</span><span class="p">[</span><span class="n">cat_in_snow</span><span class="p">]</span>
+
+<span class="c1"># Create a dictionary with features that may be relevant.</span>
+<span class="k">def</span> <span class="nf">image_example</span><span class="p">(</span><span class="n">image_string</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="n">image_shape</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">decode_jpeg</span><span class="p">(</span><span class="n">image_string</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">feature</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="n">_int64_feature</span><span class="p">(</span><span class="n">image_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+        <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">_int64_feature</span><span class="p">(</span><span class="n">image_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+        <span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="n">_int64_feature</span><span class="p">(</span><span class="n">image_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">_int64_feature</span><span class="p">(</span><span class="n">label</span><span class="p">),</span>
+        <span class="s1">&#39;image_raw&#39;</span><span class="p">:</span> <span class="n">_bytes_feature</span><span class="p">(</span><span class="n">image_string</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Example</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Features</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="n">feature</span><span class="p">))</span>
+    
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">python_io</span><span class="o">.</span><span class="n">TFRecordWriter</span><span class="p">(</span><span class="s1">&#39;images.tfrecords&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">filename</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">image_labels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">image_string</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">tf_example</span> <span class="o">=</span> <span class="n">image_example</span><span class="p">(</span><span class="n">image_string</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tf_example</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>读</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">raw_image_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TFRecordDataset</span><span class="p">(</span><span class="s1">&#39;images.tfrecords&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a dictionary describing the features.</span>
+<span class="n">image_feature_description</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+    <span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+    <span class="s1">&#39;image_raw&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">_parse_image_function</span><span class="p">(</span><span class="n">example_proto</span><span class="p">):</span>
+    <span class="c1"># Parse the input tf.Example proto using the dictionary above.</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">parse_single_example</span><span class="p">(</span><span class="n">example_proto</span><span class="p">,</span> <span class="n">image_feature_description</span><span class="p">)</span>
+
+<span class="n">parsed_image_dataset</span> <span class="o">=</span> <span class="n">raw_image_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_parse_image_function</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">image_features</span> <span class="ow">in</span> <span class="n">parsed_image_dataset</span><span class="p">:</span>
+    <span class="n">image_raw</span> <span class="o">=</span> <span class="n">image_features</span><span class="p">[</span><span class="s1">&#39;image_raw&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>不知为什么，全是Demo代码</p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/tensorflow/">Tensorflow</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/tf%E4%B8%AD%E7%9A%84dataset/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">tf中的Dataset</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/tf.py_function/">
+            <span class="next-text nav-default">tf.py_function</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yinjiakang@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/7407314/loner233" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/loner233" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://loner233.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Loner</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

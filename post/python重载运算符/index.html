@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python重载运算符 - Castle of Glass</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Loner" /><meta name="description" content=" 不能重载内置类型的运算符 不能新建运算符，只能重载现有运算符 某些运算符不能重载——is、and、or 和 not " />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3 with theme even" />
+
+
+<link rel="canonical" href="http://loner233.github.io/post/python%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python重载运算符" />
+<meta property="og:description" content="
+不能重载内置类型的运算符
+不能新建运算符，只能重载现有运算符
+某些运算符不能重载——is、and、or 和 not
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://loner233.github.io/post/python%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/" />
+<meta property="article:published_time" content="2020-10-11T19:49:07+08:00" />
+<meta property="article:modified_time" content="2020-10-11T19:49:07+08:00" />
+<meta itemprop="name" content="Python重载运算符">
+<meta itemprop="description" content="
+不能重载内置类型的运算符
+不能新建运算符，只能重载现有运算符
+某些运算符不能重载——is、and、or 和 not
+">
+<meta itemprop="datePublished" content="2020-10-11T19:49:07+08:00" />
+<meta itemprop="dateModified" content="2020-10-11T19:49:07+08:00" />
+<meta itemprop="wordCount" content="1229">
+
+
+
+<meta itemprop="keywords" content="Python," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python重载运算符"/>
+<meta name="twitter:description" content="
+不能重载内置类型的运算符
+不能新建运算符，只能重载现有运算符
+某些运算符不能重载——is、and、or 和 not
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Castle of Glass</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Castle of Glass</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python重载运算符</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-11 </span>
+        <div class="post-category">
+            <a href="/categories/development/"> Development </a>
+            </div>
+          <span class="more-meta"> 1229 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#重载一元运算符">重载一元运算符</a></li>
+        <li><a href="#重载二元运算符">重载二元运算符</a></li>
+        <li><a href="#重载比较运算符">重载比较运算符</a></li>
+        <li><a href="#重载增量运算符">重载增量运算符</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <ul>
+<li>不能重载内置类型的运算符</li>
+<li>不能新建运算符，只能重载现有运算符</li>
+<li>某些运算符不能重载——<code>is</code>、<code>and</code>、<code>or</code> 和 <code>not</code></li>
+</ul>
+<h2 id="重载一元运算符">重载一元运算符</h2>
+<ul>
+<li><code>-</code>(<code>__neg__</code>) 一元取负算术运算符。如果<code>x</code>是<code>-2</code>,那么<code>-x == 2</code>。</li>
+<li><code>+</code>(<code>__pos__</code>) 一元取正算术运算符。 通常， <code>x == +x</code>,但也有例外(<code>Decimal</code>精度不一致时。)</li>
+<li><code>~</code>(<code>__invert__</code>) 对整数按位取反，定义为<code>~x == -(x + 1)</code>。如果<code>x</code>是<code>2</code>，那么<code>~x == -3</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">)</span>  <span class="c1"># 构建一个新 Vector 实例，把 self 的每个分量都取反。</span>
+
+    <span class="k">def</span> <span class="fm">__pos__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># 构建一个新 Vector 实例，传入 self 的各个分量。</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="重载二元运算符">重载二元运算符</h2>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>正向方法</th>
+<th>反向方法</th>
+<th>就地方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td><code>__add__</code></td>
+<td><code>__radd__</code></td>
+<td><code>__iadd__</code></td>
+<td>加法或拼接</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td><code>__sub__</code></td>
+<td><code>__rsub__</code></td>
+<td><code>__isub__</code></td>
+<td>减法</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td><code>__mul__</code></td>
+<td><code>__rmul__</code></td>
+<td><code>__imul__</code></td>
+<td>乘法或重复复制</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td><code>__truediv__</code></td>
+<td><code>__rtruediv__</code></td>
+<td><code>__itruediv__</code></td>
+<td>除法</td>
+</tr>
+<tr>
+<td><code>//</code></td>
+<td><code>__floordiv__</code></td>
+<td><code>__rfloordiv__</code></td>
+<td><code>__ifloordiv__</code></td>
+<td>整除</td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td><code>__mod__</code></td>
+<td><code>__rmod__</code></td>
+<td><code>__imod__</code></td>
+<td>取模</td>
+</tr>
+<tr>
+<td><code>divmod()</code></td>
+<td><code>__divmod__</code></td>
+<td><code>__rdivmod__</code></td>
+<td><code>__idivmod__</code></td>
+<td>返回由整除的商和模数组成的元组</td>
+</tr>
+<tr>
+<td><code>**，pow()</code></td>
+<td><code>__pow__</code></td>
+<td><code>__rpow__</code></td>
+<td><code>__ipow__</code></td>
+<td>取幂</td>
+</tr>
+<tr>
+<td><code>@</code></td>
+<td><code>__matmul__</code></td>
+<td><code>__rmatmul__</code></td>
+<td><code>__imatmul__</code></td>
+<td>矩阵乘法</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>__and__</code></td>
+<td><code>__rand__</code></td>
+<td><code>__iand__</code></td>
+<td>位与</td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td><code>__or__</code></td>
+<td><code>__ror__</code></td>
+<td><code>__ior__</code></td>
+<td>位或</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td><code>__xor__</code></td>
+<td><code>__rxor__</code></td>
+<td><code>__ixor__</code></td>
+<td>位异或</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;</code></td>
+<td><code>__lshift__</code></td>
+<td><code>__rlshift__</code></td>
+<td><code>__ilshift__</code></td>
+<td>按位左移</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td><code>__rshift__</code></td>
+<td><code>__rrshift__</code></td>
+<td><code>__irshift__</code></td>
+<td>按位右移</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scalar</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Real</span><span class="p">):</span>  <span class="c1"># 检查数值类型， 记得引入 numbers</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">scalar</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># 让 Python 尝试在 scalar 操作数上调用 __rmul__ 方法。</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+<span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">scalar</span>  <span class="c1"># 委托给 __mul__ 方法。</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>为了支持涉及不同类型的运算，<code>Python</code>为中缀运算符特殊方法提供了特殊的分派机制。<br>
+例如，对于表达式<code>a + b</code>，解释其绘制型以下几个步骤：<br>
+<strong>1</strong>.如果<code>a</code>有<code>__add__</code>方法，且返回值不是<code>NotImplemented</code>,则调用<code>a.__add__(b)</code>,然后返回结果。<br>
+<strong>2</strong>.如果<code>a</code>没有<code>__add__</code>方法，或者调用<code>__add__</code>方法返回<code>NotImplemented</code>，检查<code>b</code>有没有<code>__radd__</code>方法，如果有，且没有返回<code>NotImplemented</code>，调用<code>b.__radd__(a)</code>,然后返回结果。<br>
+<strong>3</strong>.如果<code>b</code>没有<code>__radd__</code>方法，或者调用<code>__radd__</code>方法返回<code>NotImplemented</code>,抛出<code>TypeError</code>,并在错误消息中指明操作数类型不支持。</p>
+<blockquote>
+<p>NotImplemented和NotImplementedError的区别<br>
+前者是特殊的单例值，如果中缀运算符特殊方法不能处理给定的操作数，那么要把它返回（return）给解释器。<br>
+NotImplementedError 是一种异常，抽象类中的占位方法把它抛出（raise），提醒子类必须覆盖。</p>
+</blockquote>
+<h2 id="重载比较运算符">重载比较运算符</h2>
+<p><code>==, !=, &gt;, &lt;, &gt;=, &lt;=</code>
+特殊的points:</p>
+<ul>
+<li>对于<code>==</code>来说，正向和反向调用的都是<code>__eq__</code>方法，只是把参数对调了;</li>
+<li>正向的<code>__gt__</code>方法调用的是反向的<code>__lt__</code>方法，并把参数对调;</li>
+<li>对于<code>==</code>和<code>!=</code>来说，如果反向调用失败，<code>Python</code>会比较对象的<code>ID</code>,而不抛出<code>TypeError</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中缀运算符</th>
+<th>正向方法调用</th>
+<th>反向方法调用</th>
+<th>后备机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a == b</code></td>
+<td><code>a.__eq__(b)</code></td>
+<td><code>b.__eq__(a)</code></td>
+<td>返回 <code>id(a) == id(b)</code></td>
+</tr>
+<tr>
+<td><code>a != b</code></td>
+<td><code>a.__ne__(b)</code></td>
+<td><code>b.__ne__(a)</code></td>
+<td>返回 <code>not (a == b)</code></td>
+</tr>
+<tr>
+<td><code>a &gt; b</code></td>
+<td><code>a.__gt__(b)</code></td>
+<td><code>b.__lt__(a)</code></td>
+<td>抛出 <code>TypeError</code></td>
+</tr>
+<tr>
+<td><code>a &lt; b</code></td>
+<td><code>a.__lt__(b)</code></td>
+<td><code>b.__gt__(a)</code></td>
+<td>抛出 <code>TypeError</code></td>
+</tr>
+<tr>
+<td><code>a &gt;= b</code></td>
+<td><code>a.__ge__(b)</code></td>
+<td><code>b.__le__(a)</code></td>
+<td>抛出 <code>TypeError</code></td>
+</tr>
+<tr>
+<td><code>a &lt;= b</code></td>
+<td><code>a.__le__(b)</code></td>
+<td><code>b.__ge__(a)</code></td>
+<td>抛出 <code>TypeError</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="重载增量运算符">重载增量运算符</h2>
+<ul>
+<li><code>+=</code>(<code>__iadd__</code>) 就地修改左边的对象，加</li>
+<li><code>*=</code>(<code>__imul__</code>) 就地修改左边的对象，乘<br>
+如果没有实现该运算符，<code>a += b</code>的作用与<code>a = a + b</code>完全一样。<br>
+如果实现了就地运算符方法，比如<code>__iadd__</code>，计算<code>a += b</code>的结果时会调用实现的就地运算符的方法。<br>
+就地表明他们会对左边进行修改，而不会创建新的对象作为结果。</li>
+</ul>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">Python</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/python%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python上下文管理器</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/numpy%E4%B8%AD%E7%9A%84outer%E7%9A%84%E5%BA%94%E7%94%A8/">
+            <span class="next-text nav-default">Numpy中的outer的应用</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yinjiakang@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/7407314/loner233" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/loner233" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://loner233.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Loner</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

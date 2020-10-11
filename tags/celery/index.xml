@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Celery on Castle of Glass</title>
+    <link>http://loner233.github.io/tags/celery/</link>
+    <description>Recent content in Celery on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 20:41:18 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/celery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Celery</title>
+      <link>http://loner233.github.io/post/celery/</link>
+      <pubDate>Sun, 11 Oct 2020 20:41:18 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/celery/</guid>
+      <description>&lt;p&gt;Celery 是 Python 语言实现的分布式队列服务，除了支持即时任务，还支持定时任务，Celery 有5个核心角色。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

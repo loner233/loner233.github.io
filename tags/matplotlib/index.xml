@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>matplotlib on Castle of Glass</title>
+    <link>http://loner233.github.io/tags/matplotlib/</link>
+    <description>Recent content in matplotlib on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 20:46:41 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/matplotlib/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Matplotlib画实时更新的图</title>
+      <link>http://loner233.github.io/post/%E4%BD%BF%E7%94%A8matplotlib%E7%94%BB%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9B%BE/</link>
+      <pubDate>Sun, 11 Oct 2020 20:46:41 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/%E4%BD%BF%E7%94%A8matplotlib%E7%94%BB%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9B%BE/</guid>
+      <description>&lt;p&gt;matplotlib画实时更新的图&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

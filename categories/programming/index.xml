@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on Castle of Glass</title>
+    <link>http://loner233.github.io/categories/programming/</link>
+    <description>Recent content in Programming on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 20:41:18 +0800</lastBuildDate><atom:link href="http://loner233.github.io/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Celery</title>
+      <link>http://loner233.github.io/post/celery/</link>
+      <pubDate>Sun, 11 Oct 2020 20:41:18 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/celery/</guid>
+      <description>&lt;p&gt;Celery 是 Python 语言实现的分布式队列服务，除了支持即时任务，还支持定时任务，Celery 有5个核心角色。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>H5py</title>
+      <link>http://loner233.github.io/post/h5py/</link>
+      <pubDate>Sun, 11 Oct 2020 20:31:57 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/h5py/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;HDF（Hierarchical Data Format）指一种为存储和处理大容量科学数据设计的文件格式及相应库文件。HDF 最早由美国国家超级计算应用中心 NCSA 开发，目前在非盈利组织 HDF 小组维护下继续发展。当前流行的版本是 HDF5。HDF5 拥有一系列的优异特性，使其特别适合进行大量科学数据的存储和操作，如它支持非常多的数据类型，灵活，通用，跨平台，可扩展，高效的 I/O 性能，支持几乎无限量（高达 EB）的单文件存储等，&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -9,21 +9,322 @@
   </url>
   
   <url>
-    <loc>http://loner233.github.io/categories/algorithm/</loc>
-    <lastmod>2020-10-11T15:11:08+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://loner233.github.io/</loc>
-    <lastmod>2020-10-11T15:11:08+08:00</lastmod>
+    <lastmod>2020-10-11T20:46:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://loner233.github.io/categories/</loc>
+    <lastmod>2020-10-11T20:46:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/categories/development/</loc>
+    <lastmod>2020-10-11T20:46:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/matplotlib/</loc>
+    <lastmod>2020-10-11T20:46:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/</loc>
+    <lastmod>2020-10-11T20:46:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/python/</loc>
+    <lastmod>2020-10-11T20:46:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/</loc>
+    <lastmod>2020-10-11T20:46:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/%E4%BD%BF%E7%94%A8matplotlib%E7%94%BB%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9B%BE/</loc>
+    <lastmod>2020-10-11T20:46:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/celery/</loc>
+    <lastmod>2020-10-11T20:41:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/celery/</loc>
+    <lastmod>2020-10-11T20:41:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/categories/programming/</loc>
+    <lastmod>2020-10-11T20:41:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/h5py/</loc>
+    <lastmod>2020-10-11T20:31:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/h5py/</loc>
+    <lastmod>2020-10-11T20:31:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/imageio/</loc>
+    <lastmod>2020-10-11T20:25:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/python%E4%B8%AD%E7%9A%84imageio/</loc>
+    <lastmod>2020-10-11T20:25:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/python%E6%B2%A1%E6%9C%89%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2020-10-11T20:23:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/python%E4%B8%AD%E6%8C%87%E5%AE%9A%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2020-10-11T20:21:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/numpy/</loc>
+    <lastmod>2020-10-11T20:19:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/numpy%E4%B8%AD%E4%B8%80%E4%BA%9B%E7%A5%9E%E5%A5%87%E7%9A%84%E7%82%B9/</loc>
+    <lastmod>2020-10-11T20:19:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84clip/</loc>
+    <lastmod>2020-10-11T20:14:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/tqdm/</loc>
+    <lastmod>2020-10-11T20:12:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tqdm%E6%A8%A1%E5%9D%97/</loc>
+    <lastmod>2020-10-11T20:12:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/python%E4%B8%AD%E6%95%B4%E6%95%B0%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2020-10-11T20:07:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/python%E4%B8%AD%E5%AF%B9%E6%BA%90%E7%A0%81%E7%9A%84%E5%8A%A0%E5%AF%86%E4%B8%8E%E6%B7%B7%E6%B7%86/</loc>
+    <lastmod>2020-10-11T20:04:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/abc/</loc>
+    <lastmod>2020-10-11T20:01:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/python%E4%B8%AD%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BBabc%E6%A8%A1%E5%9D%97/</loc>
+    <lastmod>2020-10-11T20:01:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84newaxis/</loc>
+    <lastmod>2020-10-11T19:57:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/python%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/</loc>
+    <lastmod>2020-10-11T19:55:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/python%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
+    <lastmod>2020-10-11T19:49:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84outer%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2020-10-11T19:45:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/categories/coding/</loc>
+    <lastmod>2020-10-11T16:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/tags/tensorflow/</loc>
+    <lastmod>2020-10-11T16:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tf%E6%97%A7%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2020-10-11T16:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2020-10-11T16:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tf%E4%B8%AD%E7%9A%84gradienttape/</loc>
+    <lastmod>2020-10-11T16:29:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tf%E4%B8%AD%E7%9A%84low-level-api/</loc>
+    <lastmod>2020-10-11T16:21:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tf.keras%E4%B8%ADcustom%E5%B1%82/</loc>
+    <lastmod>2020-10-11T16:17:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tf%E4%B8%AD%E7%9A%84dataset/</loc>
+    <lastmod>2020-10-11T16:04:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tf%E4%B8%AD%E7%9A%84example%E5%92%8Ctfrecord/</loc>
+    <lastmod>2020-10-11T15:54:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tf.py_function/</loc>
+    <lastmod>2020-10-11T15:51:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/keras%E4%BF%9D%E5%AD%98%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2020-10-11T15:50:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/batch-normalization/</loc>
+    <lastmod>2020-10-11T15:48:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/keras%E4%BD%BF%E7%94%A8tensorboard/</loc>
+    <lastmod>2020-10-11T15:44:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/tensorflow%E5%87%A0%E4%B8%AA%E4%BA%A4%E5%8F%89%E7%86%B5/</loc>
+    <lastmod>2020-10-11T15:43:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/post/%E4%BD%BF%E7%94%A8eager%E6%A8%A1%E5%BC%8F%E8%AE%AD%E7%BB%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2020-10-11T15:41:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://loner233.github.io/categories/algorithm/</loc>
     <lastmod>2020-10-11T15:11:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -66,20 +367,6 @@
   
   <url>
     <loc>http://loner233.github.io/post/mcmc-part4/</loc>
-    <lastmod>2020-10-11T15:11:08+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://loner233.github.io/post/</loc>
-    <lastmod>2020-10-11T15:11:08+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://loner233.github.io/tags/</loc>
     <lastmod>2020-10-11T15:11:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

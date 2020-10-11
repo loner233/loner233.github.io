@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on Castle of Glass</title>
+    <link>http://loner233.github.io/categories/development/</link>
+    <description>Recent content in Development on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 20:46:41 +0800</lastBuildDate><atom:link href="http://loner233.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Matplotlib画实时更新的图</title>
+      <link>http://loner233.github.io/post/%E4%BD%BF%E7%94%A8matplotlib%E7%94%BB%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9B%BE/</link>
+      <pubDate>Sun, 11 Oct 2020 20:46:41 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/%E4%BD%BF%E7%94%A8matplotlib%E7%94%BB%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9B%BE/</guid>
+      <description>&lt;p&gt;matplotlib画实时更新的图&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python中的imageio</title>
+      <link>http://loner233.github.io/post/python%E4%B8%AD%E7%9A%84imageio/</link>
+      <pubDate>Sun, 11 Oct 2020 20:25:03 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E4%B8%AD%E7%9A%84imageio/</guid>
+      <description>imageio的操作 ps:公司的电脑是windows的，正斜杠和反斜杠实在蛋疼，上次hadoop在windows上运行的权限问题已经使我非常</description>
+    </item>
+    
+    <item>
+      <title>Python没有真正的多线程</title>
+      <link>http://loner233.github.io/post/python%E6%B2%A1%E6%9C%89%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Sun, 11 Oct 2020 20:23:29 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E6%B2%A1%E6%9C%89%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description>&lt;p&gt;为什么说Python没有真正的多线程呢&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python中指定变量类型</title>
+      <link>http://loner233.github.io/post/python%E4%B8%AD%E6%8C%87%E5%AE%9A%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Sun, 11 Oct 2020 20:21:37 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E4%B8%AD%E6%8C%87%E5%AE%9A%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/</guid>
+      <description>&lt;p&gt;这是一个淡忘的知识，由于动态语言的特性，好久都没指定过python变量的类型&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Numpy中一些神奇的点</title>
+      <link>http://loner233.github.io/post/numpy%E4%B8%AD%E4%B8%80%E4%BA%9B%E7%A5%9E%E5%A5%87%E7%9A%84%E7%82%B9/</link>
+      <pubDate>Sun, 11 Oct 2020 20:19:43 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/numpy%E4%B8%AD%E4%B8%80%E4%BA%9B%E7%A5%9E%E5%A5%87%E7%9A%84%E7%82%B9/</guid>
+      <description>&lt;p&gt;只是用来记录一些比较容易被忽略但是又有点实用的点&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Numpy中的clip</title>
+      <link>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84clip/</link>
+      <pubDate>Sun, 11 Oct 2020 20:14:53 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84clip/</guid>
+      <description>&lt;p&gt;numpy.clip(a, a_min, a_max, out=None)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>tqdm模块</title>
+      <link>http://loner233.github.io/post/tqdm%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Sun, 11 Oct 2020 20:12:15 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/tqdm%E6%A8%A1%E5%9D%97/</guid>
+      <description>&lt;p&gt;&lt;code&gt;tqdm&lt;/code&gt;有三种主要的方法&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python中整数引发的问题</title>
+      <link>http://loner233.github.io/post/python%E4%B8%AD%E6%95%B4%E6%95%B0%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 11 Oct 2020 20:07:06 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E4%B8%AD%E6%95%B4%E6%95%B0%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;在Python中一切都是对象，整数也是对象，在比较两个整数是有两个运算符&lt;code&gt;==&lt;/code&gt;和&lt;code&gt;is&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python中对源码的加密与混淆</title>
+      <link>http://loner233.github.io/post/python%E4%B8%AD%E5%AF%B9%E6%BA%90%E7%A0%81%E7%9A%84%E5%8A%A0%E5%AF%86%E4%B8%8E%E6%B7%B7%E6%B7%86/</link>
+      <pubDate>Sun, 11 Oct 2020 20:04:21 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E4%B8%AD%E5%AF%B9%E6%BA%90%E7%A0%81%E7%9A%84%E5%8A%A0%E5%AF%86%E4%B8%8E%E6%B7%B7%E6%B7%86/</guid>
+      <description>&lt;p&gt;在python商业化开发中，全盘给出源码是一件非常不靠铺的事情，所以有时候就要对代码进行加密和混淆。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python中的抽象类(abc模块)</title>
+      <link>http://loner233.github.io/post/python%E4%B8%AD%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BBabc%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Sun, 11 Oct 2020 20:01:10 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E4%B8%AD%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BBabc%E6%A8%A1%E5%9D%97/</guid>
+      <description>&lt;p&gt;通过abc模块可以使得Python的基类能达到接口的效果&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Numpy中的newaxis</title>
+      <link>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84newaxis/</link>
+      <pubDate>Sun, 11 Oct 2020 19:57:53 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84newaxis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python上下文管理器</title>
+      <link>http://loner233.github.io/post/python%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/</link>
+      <pubDate>Sun, 11 Oct 2020 19:55:23 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/</guid>
+      <description>&lt;p&gt;&lt;code&gt;with&lt;/code&gt;是最广泛使用的上下文管理器。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;test/test.txt&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;w&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;write&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python重载运算符</title>
+      <link>http://loner233.github.io/post/python%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <pubDate>Sun, 11 Oct 2020 19:49:07 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/python%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;不能重载内置类型的运算符&lt;/li&gt;
+&lt;li&gt;不能新建运算符，只能重载现有运算符&lt;/li&gt;
+&lt;li&gt;某些运算符不能重载——&lt;code&gt;is&lt;/code&gt;、&lt;code&gt;and&lt;/code&gt;、&lt;code&gt;or&lt;/code&gt; 和 &lt;code&gt;not&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Numpy中的outer的应用</title>
+      <link>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84outer%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Sun, 11 Oct 2020 19:45:01 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/numpy%E4%B8%AD%E7%9A%84outer%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;对于多维向量，全部展开为一维向量&lt;/li&gt;
+&lt;li&gt;第一个参数表示倍数，使得第二个向量每次变为几倍&lt;/li&gt;
+&lt;li&gt;地一个参数确定结果的行，第二个参数确定结果的列&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
