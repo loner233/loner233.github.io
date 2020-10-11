@@ -6,7 +6,7 @@
     <description>Recent content on Castle of Glass</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Oct 2020 11:32:40 +0800</lastBuildDate><atom:link href="http://loner233.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Oct 2020 11:39:57 +0800</lastBuildDate><atom:link href="http://loner233.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>http://loner233.github.io/about/</link>
@@ -16,6 +16,24 @@
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#1</title>
+      <link>http://loner233.github.io/post/mcmc-part1/</link>
+      <pubDate>Sun, 11 Oct 2020 11:39:57 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>重新理解贝叶斯公式</title>
+      <link>http://loner233.github.io/post/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F/</link>
+      <pubDate>Sun, 11 Oct 2020 11:37:21 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F/</guid>
+      <description></description>
     </item>
     
     <item>
