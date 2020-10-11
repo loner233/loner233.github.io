@@ -6,7 +6,72 @@
     <description>Recent content in 深度学习 on Castle of Glass</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Oct 2020 11:32:40 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Oct 2020 15:11:08 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#0</title>
+      <link>http://loner233.github.io/post/mcmc-part0/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part0/</guid>
+      <description>&lt;p&gt;假设观测数据由随机变量$y \in Y$表示,模型由随机变量$x \in X$表示.
+贝叶斯学习通过贝叶斯定理计算给定数据条件下模型的后验概率,并选择后验概率最大的模型.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#1</title>
+      <link>http://loner233.github.io/post/mcmc-part1/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part1/</guid>
+      <description>&lt;p&gt;很多人都会用圆周率的例子来解释蒙特卡罗方法，这个真的没什么用，没人能够从这个例子里面理解什么是MCMC，接下来开个坑，花几天搞完这儿个东西。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#2</title>
+      <link>http://loner233.github.io/post/mcmc-part2/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part2/</guid>
+      <description>&lt;p&gt;马尔科夫链的定义比较简单,它假设某一时刻状态转移的概率只依赖于它的前一个状态.
+假设状态序列是$&amp;hellip;,X_{t-2},X_{t-1},X_{t},X_{t+1},&amp;hellip;$那么我们在$X_{t+1}$的状态条件概率仅仅依赖于$X_t$时刻,即:
+$$P(X_{t+1}|&amp;hellip;X_{t-2},X_{t-1},X_{t}) = P(X_{t+1}|X_{t})$$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#3</title>
+      <link>http://loner233.github.io/post/mcmc-part3/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part3/</guid>
+      <description>&lt;h2 id=&#34;细致平稳条件&#34;&gt;细致平稳条件&lt;/h2&gt;
+&lt;p&gt;如果非周期马尔科夫链的状态转移矩阵$P$和概率分布$\pi(x)$对于所有的$i,j$满足:
+$$\pi(i)P(i,j) = \pi(j)P(j,i)$$
+则称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#4</title>
+      <link>http://loner233.github.io/post/mcmc-part4/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part4/</guid>
+      <description>&lt;h2 id=&#34;gibbs采样&#34;&gt;Gibbs采样&lt;/h2&gt;
+&lt;h3 id=&#34;细致平稳条件&#34;&gt;细致平稳条件&lt;/h3&gt;
+&lt;p&gt;回到细致平稳条件,如果不采用MCMC的方法(加上一个建议分布), 想要满足下式
+$$\pi(i)P(i,j) = \pi(j)P(j,i)$$
+以二维数据分布开始,假设$\pi(x_1,x_2)$是一个二维联合数据分布.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>重新理解贝叶斯公式</title>
+      <link>http://loner233.github.io/post/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F/</link>
+      <pubDate>Sun, 11 Oct 2020 11:37:21 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F/</guid>
+      <description>&lt;p&gt;$$P(A|B)=\frac{P(B|A)}{P(B)}*P(A)$$&lt;/p&gt;
+&lt;p&gt;以前一直理解贝叶斯公式为概率转换的，也就是先验，后验转换。现在看到了一种更好的解释&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>图像分割的损失函数</title>
       <link>http://loner233.github.io/post/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</link>
@@ -40,7 +105,8 @@
       <pubDate>Thu, 19 Sep 2019 09:10:00 +0800</pubDate>
       
       <guid>http://loner233.github.io/post/gaussian-error-linear-unita.k.a-gelu/</guid>
-      <description></description>
+      <description>&lt;h2 id=&#34;正态分布&#34;&gt;正态分布&lt;/h2&gt;
+&lt;p&gt;得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$&lt;/p&gt;</description>
     </item>
     
   </channel>

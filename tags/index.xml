@@ -6,22 +6,40 @@
     <description>Recent content in Tags on Castle of Glass</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Oct 2020 11:39:57 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Oct 2020 15:11:08 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MCMC</title>
       <link>http://loner233.github.io/tags/mcmc/</link>
-      <pubDate>Sun, 11 Oct 2020 11:39:57 +0800</pubDate>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
       
       <guid>http://loner233.github.io/tags/mcmc/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>深度学习</title>
+      <link>http://loner233.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>蒙特卡洛</title>
       <link>http://loner233.github.io/tags/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B/</link>
-      <pubDate>Sun, 11 Oct 2020 11:39:57 +0800</pubDate>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
       
       <guid>http://loner233.github.io/tags/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>统计学习</title>
+      <link>http://loner233.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Sun, 11 Oct 2020 14:38:09 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     
@@ -31,15 +49,6 @@
       <pubDate>Sun, 11 Oct 2020 11:32:40 +0800</pubDate>
       
       <guid>http://loner233.github.io/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>深度学习</title>
-      <link>http://loner233.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Sun, 11 Oct 2020 11:32:40 +0800</pubDate>
-      
-      <guid>http://loner233.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     

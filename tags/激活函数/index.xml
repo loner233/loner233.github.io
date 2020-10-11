@@ -22,7 +22,8 @@
       <pubDate>Thu, 19 Sep 2019 09:10:00 +0800</pubDate>
       
       <guid>http://loner233.github.io/post/gaussian-error-linear-unita.k.a-gelu/</guid>
-      <description></description>
+      <description>&lt;h2 id=&#34;正态分布&#34;&gt;正态分布&lt;/h2&gt;
+&lt;p&gt;得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$&lt;/p&gt;</description>
     </item>
     
   </channel>

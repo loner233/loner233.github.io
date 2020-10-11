@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>极大似然估计 - Castle of Glass</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Loner" /><meta name="description" content="似然函数 似然和概率有非常大的相似点，但是有一个最为关键的不同点。
+似然是已知观测结果，来估计参数;而概率是已知参数，来估计观测
+" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3 with theme even" />
+
+
+<link rel="canonical" href="http://loner233.github.io/post/%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="极大似然估计" />
+<meta property="og:description" content="似然函数
+似然和概率有非常大的相似点，但是有一个最为关键的不同点。
+似然是已知观测结果，来估计参数;而概率是已知参数，来估计观测" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://loner233.github.io/post/%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/" />
+<meta property="article:published_time" content="2020-10-11T14:38:09+08:00" />
+<meta property="article:modified_time" content="2020-10-11T14:38:09+08:00" />
+<meta itemprop="name" content="极大似然估计">
+<meta itemprop="description" content="似然函数
+似然和概率有非常大的相似点，但是有一个最为关键的不同点。
+似然是已知观测结果，来估计参数;而概率是已知参数，来估计观测">
+<meta itemprop="datePublished" content="2020-10-11T14:38:09+08:00" />
+<meta itemprop="dateModified" content="2020-10-11T14:38:09+08:00" />
+<meta itemprop="wordCount" content="1544">
+
+
+
+<meta itemprop="keywords" content="统计学习," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="极大似然估计"/>
+<meta name="twitter:description" content="似然函数
+似然和概率有非常大的相似点，但是有一个最为关键的不同点。
+似然是已知观测结果，来估计参数;而概率是已知参数，来估计观测"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Castle of Glass</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Castle of Glass</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">极大似然估计</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-11 </span>
+        <div class="post-category">
+            <a href="/categories/algorithm/"> Algorithm </a>
+            </div>
+          <span class="more-meta"> 1544 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#似然函数">似然函数</a></li>
+        <li><a href="#极大似然估计">极大似然估计</a></li>
+        <li><a href="#累计分布函数cdf和概率密度函数pdf">累计分布函数（CDF）和概率密度函数（PDF）</a>
+          <ul>
+            <li><a href="#累积分布函数cdf">累积分布函数（CDF）</a></li>
+            <li><a href="#概率密度函数pdf">概率密度函数（PDF）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="似然函数">似然函数</h2>
+<p>似然和概率有非常大的相似点，但是有一个最为关键的不同点。</p>
+<p><strong>似然是已知观测结果，来估计参数;而概率是已知参数，来估计观测</strong></p>
+<p>假设有一枚硬币，其中正面向上的概率$p$为$a$,那么反面朝上的概率为$1-a$，假设并不知道$a$是多少，现在抛了两次，结果都是正面朝上,记这种现象为$A$。那么这种情况的概率就是：</p>
+<p>$$a^2$$</p>
+<p>所谓极大似然就是，当参数$a$为多少时，所观测到的观测结果最容易发生。</p>
+<p>显然，当$a$为1时，也就是无论怎么抛都是正面朝上时，最容易观测到<strong>抛了两次，两次都是正面朝上</strong></p>
+<p>如果抛了三次，观察到现象$A$是“正、正、反”，那么这种情况发生的概率就是:</p>
+<p>$$a^2*(1-a)$$</p>
+<p>如果想要以上观测情况尽可能发生，那么就需要上面的概率尽可能的大。</p>
+<p><img src="/images/%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/4e498563.png" alt="Local Picture"></p>
+<p>显然在$a=2/3$的时候取极大值，达到概率最大。</p>
+<p>所以，在这里把概率$a^2*(1-a)$成为**似然函数**，即：
+$$L(a|A) = p(A|p=a)$$</p>
+<h2 id="极大似然估计">极大似然估计</h2>
+<p>以上已经有过了极大似然的思想了，即通过</p>
+<p>$$L(a|A) = P(A|p=a)$$</p>
+<p>来寻找$a$的值,来使得在此$a$值的情况下，观测事件发生的概率最大。</p>
+<p>一直很奇怪，为什么对连续型随机变量而言，似然函数是PDF（概率密度分布）的乘积。</p>
+<blockquote>
+<p>概率密度，相对于物理学中的密度。设想要求一个点的质量，显然这个点无限小，质量肯定为0;同样的求某一个点的概率，由于这个长度无限小，所以概率为0。对于质量，人们引进了密度，表示单位体积内的质量;而对于概率，人们引进了概率密度，表示单位长度内取值的可能性;</p>
+</blockquote>
+<p>经过上述对概率密度的理解，如果想要似然函数最大，即要观测事件最有可能发生，在固定的长度内，使得概率密度最大不就行了吗。</p>
+<p>就像已知一个块铁的体积（观测），怎样才能让质量（概率）最大呢？<strong>让密度（概率密度）最大不就行了</strong></p>
+<h2 id="累计分布函数cdf和概率密度函数pdf">累计分布函数（CDF）和概率密度函数（PDF）</h2>
+<p>在概率论中，能够完整表示一个实数（一维）随机变量的函数有两个：累积分布函数（cumulative distribution function，CDF）和概率密度函数（probability density function，PDF）。</p>
+<h3 id="累积分布函数cdf">累积分布函数（CDF）</h3>
+<p>随机变量X的累积分布函数也叫作分布函数，它的定义为：随机变了X的取值小于等于某个值x的概率，即：</p>
+<p>$$F(X)=P(X≤x)$$</p>
+<p>假设X为你随机的从所有在上海生活的人选出一人的身高，那么F(x)表示这个人的身高不高于x的概率。如果F(175 cm)=0.8，表示你随机选的这个人的身高在175 cm或者以下的概率为0.8。</p>
+<p>这里的变量X可以是连续型随机变量也可以是离散型随机变量。从随机变量的累积分布函数可以很方便的看出该变量的取值在某个区间内出现的概率，即：</p>
+<p>$$F(a&lt;X≤b)=F(b)-F(a)$$</p>
+<p>以随机变量X在－10到10之间分布的10000个数据点为例，X的CDF善于回答的问题是:<br>
+<strong>1</strong>. 所有大于-3的数据点在总数据集中所占比例约有多大？<br>
+<strong>2</strong>. 所有大于3而小于8的数据点在总数据集中所占比例是多少？</p>
+<p>根据CDF的定义我们可以得出它主要有下面两个特点：</p>
+<ul>
+<li>随机变量的CDF的最小值为0，最大值为1；</li>
+<li>随机变量的CDF为单调不减函数。</li>
+</ul>
+<h3 id="概率密度函数pdf">概率密度函数（PDF）</h3>
+<p>概率密度函数描述了随机变量可以取到各个特定值的可能性，本质上是一种似然函数，通常用f(x)表示。一般的，只考虑连续型随机变量得概率密度函数。</p>
+<p>还以上面身高的例子为例，f(x)表示这个人的身高等于x的概率。如果F(175 cm)=0.2，表示随机选的这个人的身高为175cm概率为0.2。</p>
+<p>以随机变量X在－10到10之间分布的10000个数据点为例，X的PDF善于回答的问题是：<br>
+所有这些数据点落在哪个值或者区间的可能性最大？</p>
+<p>同样的，随机变量的PDF点为：$f(x)$在所有可能的区间上面的积分为1，即：
+$$\int_{-\infty }^{\infty }f(x)dx=1$$</p>
+<p>三、两者的关系
+累积分布函数为概率密度函数曲线下方在给定的值左侧的全部面积，即：
+$$F(x)=\int_{-\infty }^{x}f(t)dt$$</p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/">统计学习</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/mcmc-part4/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MCMC(马尔科夫-蒙特卡洛)#4</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/em%E7%AE%97%E6%B3%95/">
+            <span class="next-text nav-default">EM算法</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yinjiakang@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/7407314/loner233" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/loner233" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://loner233.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Loner</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

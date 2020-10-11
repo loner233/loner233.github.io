@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MCMC(马尔科夫-蒙特卡洛)#2 - Castle of Glass</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Loner" /><meta name="description" content="马尔科夫链的定义比较简单,它假设某一时刻状态转移的概率只依赖于它的前一个状态. 假设状态序列是$&amp;hellip;,X_{t-2},X_{t-1},X_{t},X_{t&#43;1},&amp;hellip;$那么我们在$X_{t&#43;1}$的状态条件概率仅仅依赖于$X_t$时刻,即: $$P(X_{t&#43;1}|&amp;hellip;X_{t-2},X_{t-1},X_{t}) = P(X_{t&#43;1}|X_{t})$$
+" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3 with theme even" />
+
+
+<link rel="canonical" href="http://loner233.github.io/post/mcmc-part2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="MCMC(马尔科夫-蒙特卡洛)#2" />
+<meta property="og:description" content="马尔科夫链的定义比较简单,它假设某一时刻状态转移的概率只依赖于它的前一个状态.
+假设状态序列是$&hellip;,X_{t-2},X_{t-1},X_{t},X_{t&#43;1},&hellip;$那么我们在$X_{t&#43;1}$的状态条件概率仅仅依赖于$X_t$时刻,即:
+$$P(X_{t&#43;1}|&hellip;X_{t-2},X_{t-1},X_{t}) = P(X_{t&#43;1}|X_{t})$$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://loner233.github.io/post/mcmc-part2/" />
+<meta property="article:published_time" content="2020-10-11T15:11:08+08:00" />
+<meta property="article:modified_time" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="name" content="MCMC(马尔科夫-蒙特卡洛)#2">
+<meta itemprop="description" content="马尔科夫链的定义比较简单,它假设某一时刻状态转移的概率只依赖于它的前一个状态.
+假设状态序列是$&hellip;,X_{t-2},X_{t-1},X_{t},X_{t&#43;1},&hellip;$那么我们在$X_{t&#43;1}$的状态条件概率仅仅依赖于$X_t$时刻,即:
+$$P(X_{t&#43;1}|&hellip;X_{t-2},X_{t-1},X_{t}) = P(X_{t&#43;1}|X_{t})$$">
+<meta itemprop="datePublished" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="dateModified" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="wordCount" content="1480">
+
+
+
+<meta itemprop="keywords" content="蒙特卡洛,MCMC,深度学习," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MCMC(马尔科夫-蒙特卡洛)#2"/>
+<meta name="twitter:description" content="马尔科夫链的定义比较简单,它假设某一时刻状态转移的概率只依赖于它的前一个状态.
+假设状态序列是$&hellip;,X_{t-2},X_{t-1},X_{t},X_{t&#43;1},&hellip;$那么我们在$X_{t&#43;1}$的状态条件概率仅仅依赖于$X_t$时刻,即:
+$$P(X_{t&#43;1}|&hellip;X_{t-2},X_{t-1},X_{t}) = P(X_{t&#43;1}|X_{t})$$"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Castle of Glass</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Castle of Glass</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MCMC(马尔科夫-蒙特卡洛)#2</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-11 </span>
+        <div class="post-category">
+            <a href="/categories/algorithm/"> Algorithm </a>
+            </div>
+          <span class="more-meta"> 1480 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#转移矩阵的性质">转移矩阵的性质</a>
+          <ul>
+            <li><a href="#性质的解释">性质的解释</a></li>
+          </ul>
+        </li>
+        <li><a href="#基于马尔科夫链采样">基于马尔科夫链采样</a></li>
+        <li><a href="#小结">小结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>马尔科夫链的定义比较简单,它假设某一时刻状态转移的概率只依赖于它的前一个状态.
+假设状态序列是$&hellip;,X_{t-2},X_{t-1},X_{t},X_{t+1},&hellip;$那么我们在$X_{t+1}$的状态条件概率仅仅依赖于$X_t$时刻,即:
+$$P(X_{t+1}|&hellip;X_{t-2},X_{t-1},X_{t}) = P(X_{t+1}|X_{t})$$</p>
+<p>所以,只要求出系统中任意两个状态之间的转换概率,这个马尔科夫链就确定了.</p>
+<p><img src="/images/mcmc_part1/d3a63990.png" alt="Local Picture"></p>
+<p>这个马尔科夫链是表示股市模型的，共有三种状态：牛市（Bull market）, 熊市（Bear market）和横盘（Stagnant market）。每一个状态都以一定的概率转化到下一个状态。比如，牛市以0.025的概率转化到横盘的状态。</p>
+<p>这个状态概率转化图可以以矩阵的形式表示。如果我们定义矩阵阵P某一位置$P(i,j)$的值为$P(j|i)$,即从状态i转化到状态j的概率，并定义牛市为状态0， 熊市为状态1, 横盘为状态2. 这样我们得到了马尔科夫链模型的状态转移矩阵为：
+$$$$</p>
+<p>$$\left(            <br>
+\begin{array}{ccc}<br>
+0.9 &amp; 0.075 &amp; 0.025\\<br>
+0.15 &amp; 0.8 &amp; 0.05\\<br>
+0.25 &amp; 0.25 &amp; 0.5
+\end{array}
+\right)$$</p>
+<h2 id="转移矩阵的性质">转移矩阵的性质</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.075</span><span class="p">,</span><span class="mf">0.025</span><span class="p">],[</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.05</span><span class="p">],[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">*</span><span class="n">matrix</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Current round:&#34;</span> <span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>通过代码明显可知,在n≥6以后，$P^n$的值稳定不再变化.</strong></p>
+<ul>
+<li>如果一个非周期的马尔科夫链有状态转移矩阵$P$, 并且它的任何两个状态是连通的,那么$\lim_{n \to \infty}P^n_{ij}$与$i$是无关的</li>
+</ul>
+<ol>
+<li>$$\lim_{n \to \infty} P^n_{ij} = \pi(j)$$</li>
+<li>$$\lim_{n \to \infty} P^n = \left(\begin{array}{ccc} \pi(1) &amp; \pi(2) &amp; &hellip; &amp; \pi(j) &amp; &hellip; \\\pi(1) &amp; \pi(2) &amp; &hellip; &amp; \pi(j) &amp; &hellip; \\&hellip;&amp;&hellip;&amp;&hellip;&amp;&hellip;&amp;&hellip;\\ \pi(1) &amp; \pi(2) &amp; &hellip; &amp; \pi(j) &amp; &hellip; \\&hellip;&amp;&hellip;&amp;&hellip;&amp;&hellip;&amp;&hellip; \end{array}\right)$$</li>
+<li>$\pi(j) = \sum^{\infty}_{i=0}\pi(i)P_{ij}$</li>
+<li>$\pi$是方程$\pi P = \pi$的唯一非负解,其中:
+$$\pi = [\pi(1),\pi(2),&hellip;,\pi(j),&hellip;],\sum^{\infty}_{i=0}\pi(i) = 1$$</li>
+</ol>
+<h3 id="性质的解释">性质的解释</h3>
+<p>1）非周期的马尔科夫链：这个主要是指马尔科夫链的状态转化不是循环的，如果是循环的则永远不会收敛。幸运的是我们遇到的马尔科夫链一般都是非周期性的。用数学方式表述则是：对于任意某一状态i，d为集合${n∣n≥1,P^n_ii&gt;0}$的最大公约数，如果 d=1 ，则该状态为非周期的</p>
+<p>2）任何两个状态是连通的：这个指的是从任意一个状态可以通过有限步到达其他的任意一个状态，不会出现条件概率一直为0导致不可达的情况。</p>
+<p>3）马尔科夫链的状态数可以是有限的，也可以是无限的。因此可以用于连续概率分布和离散概率分布。</p>
+<p>4）$\pi$通常称为马尔科夫链的平稳分布。</p>
+<h2 id="基于马尔科夫链采样">基于马尔科夫链采样</h2>
+<p>假设任意初始的概率分布是 $\pi_0(x)$,经过第一轮马尔科夫链状态转以后的概率分布是$\pi_1(x)$,第$i$轮的概率分布式$\pi_i(x)$,假设经过n轮马尔科夫链收敛到平稳分布$\pi(x)$,即:</p>
+<p>$$\pi_n(x) = \pi_{n+1}(x) = \pi_{n+2}(x) = &hellip; = \pi(x)$$</p>
+<p>对于每个分布$\pi_i(x)$,我们有:</p>
+<p>$$\pi_i(x) = \pi_{i-1}(x)P = \pi_{i-2}(x)P^2 = \pi_0(x)P^i$$</p>
+<p>首先,基于初始任意简单概率分布比如高斯分布$\pi_0(x)$采样得到状态值$x_0$,基于条件概率分布$P(x|x_0)$采样状态值$x_1$,一直进行下去,比如到n次是,可以认为采样集$(x_n,x_{n+1},x_{n+2},&hellip;)$即使符合平稳分布的对应样本集,可以用来MC Method求和了</p>
+<ol>
+<li>输入马尔科夫链状态转移矩阵$P$,设定状态转移次数阈值$n_1$,需要样本数$n_2$</li>
+<li>从任意简单概率分布采样得到初始状态值 $x_0$</li>
+<li>$for\ t\ =\ 0\ to\ n_1\ +\ n_2-1$: 从条件概率分布$P(x|x_t)$中采样得到样本$x_{t+1}$样本集$x_{n_1},x_{n_1+1},x_{n_1+2},x_{n_1+3},x_{n_1+4},&hellip;,x_{n_1+n_2-1}$</li>
+</ol>
+<h2 id="小结">小结</h2>
+<p>其实很关键的一个点一直没有解决,那就是给定一个平稳分布$\pi$,如何得到它所对应的马尔科夫链状态转移矩阵$P$,这就需要引入M-H采样和Gibbs采样了.</p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B/">蒙特卡洛</a>
+          <a href="/tags/mcmc/">MCMC</a>
+          <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/mcmc-part1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MCMC(马尔科夫-蒙特卡洛)#1</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/mcmc-part3/">
+            <span class="next-text nav-default">MCMC(马尔科夫-蒙特卡洛)#3</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:yinjiakang@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/7407314/loner233" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/loner233" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://loner233.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Loner</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

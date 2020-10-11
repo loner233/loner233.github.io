@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>图像分割的损失函数 - Castle of Glass</title>
+  <title>MCMC(马尔科夫-蒙特卡洛)#3 - Castle of Glass</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Loner" /><meta name="description" content="" />
+<meta name="author" content="Loner" /><meta name="description" content="细致平稳条件 如果非周期马尔科夫链的状态转移矩阵$P$和概率分布$\pi(x)$对于所有的$i,j$满足: $$\pi(i)P(i,j) = \pi(j)P(j,i)$$ 则称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布
+" />
 
 
 
@@ -26,7 +27,7 @@
 <meta name="generator" content="Hugo 0.76.3 with theme even" />
 
 
-<link rel="canonical" href="http://loner233.github.io/post/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" />
+<link rel="canonical" href="http://loner233.github.io/post/mcmc-part3/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,24 +40,33 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="图像分割的损失函数" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="MCMC(马尔科夫-蒙特卡洛)#3" />
+<meta property="og:description" content="细致平稳条件
+如果非周期马尔科夫链的状态转移矩阵$P$和概率分布$\pi(x)$对于所有的$i,j$满足:
+$$\pi(i)P(i,j) = \pi(j)P(j,i)$$
+则称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://loner233.github.io/post/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" />
-<meta property="article:published_time" content="2020-10-11T11:32:40+08:00" />
-<meta property="article:modified_time" content="2020-10-11T11:32:40+08:00" />
-<meta itemprop="name" content="图像分割的损失函数">
-<meta itemprop="description" content="">
-<meta itemprop="datePublished" content="2020-10-11T11:32:40+08:00" />
-<meta itemprop="dateModified" content="2020-10-11T11:32:40+08:00" />
-<meta itemprop="wordCount" content="393">
+<meta property="og:url" content="http://loner233.github.io/post/mcmc-part3/" />
+<meta property="article:published_time" content="2020-10-11T15:11:08+08:00" />
+<meta property="article:modified_time" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="name" content="MCMC(马尔科夫-蒙特卡洛)#3">
+<meta itemprop="description" content="细致平稳条件
+如果非周期马尔科夫链的状态转移矩阵$P$和概率分布$\pi(x)$对于所有的$i,j$满足:
+$$\pi(i)P(i,j) = \pi(j)P(j,i)$$
+则称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布">
+<meta itemprop="datePublished" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="dateModified" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="wordCount" content="1354">
 
 
 
-<meta itemprop="keywords" content="深度学习,损失函数," />
+<meta itemprop="keywords" content="蒙特卡洛,MCMC,深度学习," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="图像分割的损失函数"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="MCMC(马尔科夫-蒙特卡洛)#3"/>
+<meta name="twitter:description" content="细致平稳条件
+如果非周期马尔科夫链的状态转移矩阵$P$和概率分布$\pi(x)$对于所有的$i,j$满足:
+$$\pi(i)P(i,j) = \pi(j)P(j,i)$$
+则称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -123,15 +133,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">图像分割的损失函数</h1>
+      <h1 class="post-title">MCMC(马尔科夫-蒙特卡洛)#3</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2020-10-11 </span>
         <div class="post-category">
             <a href="/categories/algorithm/"> Algorithm </a>
             </div>
-          <span class="more-meta"> 393 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 1354 words </span>
+          <span class="more-meta"> 3 mins read </span>
         
       </div>
     </header>
@@ -141,60 +151,94 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#cross-entropy交叉熵">Cross Entropy(交叉熵)</a></li>
-    <li><a href="#weighted-cross-entropy带权交叉熵">Weighted cross entropy(带权交叉熵)</a></li>
+    <li>
+      <ul>
+        <li><a href="#细致平稳条件">细致平稳条件</a></li>
+        <li><a href="#mcmc采样">MCMC采样</a></li>
+        <li><a href="#m-h采样">M-H采样</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h1 id="cross-entropy交叉熵">Cross Entropy(交叉熵)</h1>
-<p>假设真实概率:</p>
+      <h2 id="细致平稳条件">细致平稳条件</h2>
+<p>如果非周期马尔科夫链的状态转移矩阵$P$和概率分布$\pi(x)$对于所有的$i,j$满足:
+$$\pi(i)P(i,j) = \pi(j)P(j,i)$$
+则称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布</p>
+<p>由细致平稳条件可得:
+$$\sum_{j=1}^{\infty}\pi(i)P(i,j) = \sum_{j=1}^{\infty}\pi(j)P(j,i) = \pi(j)\sum_{j=1}^{\infty}P(j,i)=\pi(j)$$
+用矩阵表示极为:
+$$\pi P = \pi$$
+所以,其实只要找到可以是概率分布$\pi(x)$满足细致平稳分布的矩阵$P$</p>
+<h2 id="mcmc采样">MCMC采样</h2>
+<p>一般情况下,目标平稳分布$\pi(x)$和某一个马尔科夫链状态转移矩阵$Q$,即:
+$$\pi(i)Q(i,j) \neq \pi(j)Q(j,i)$$
+引入$\alpha(i,j)$使上式取等号,使得细致平稳条件成立,即:
+$$\pi(i)Q(i,j)\alpha(i,j) = \pi(j)Q(j,i)\alpha(j,i)$$</p>
+<p>怎么样的$\alpha(i,j)$可以使等式成立呢?仅需满足以下两式即可:
+$$\alpha(i,j) = \pi(j)Q(j,i)$$
+$$\alpha(j,i) = \pi(i)Q(i,j)$$
+这样就得到了分布$\pi(x)$对应的马尔科夫链状态转移矩阵P,满足:
+$$P(i,j) = Q(i,j)\alpha(i,j)$$</p>
+<p>目标矩阵$P$可以通过任意一个马尔科夫链状态转移矩阵$Q$乘以$\alpha(i,j)$,其中$\alpha(i,j)$一般称之为接受率.</p>
+<ol>
+<li>输入任意选定的马尔科夫链状态转移矩阵$Q$,平稳分布$\pi(x)$,状态转移次数阈值$n_1$,需要的样本个数$n_2$</li>
+<li>从任意简单概率分布采样得到初始状态值$x_0$</li>
+<li>$for\ t\ =\ 0\ to\ n_1\ +\ n_2\ -1:$
 <ul>
-<li>$P(Y = 0) = p$</li>
-<li>$P(Y = 1) = 1 - p$</li>
+<li>从条件概率分布$Q(x|x_t)$中采样得到样本$x_*$</li>
+<li>从均匀分布采样$u$服从$uniform[0,1]$</li>
+<li>如果$u &lt; \alpha(x_t,x_*) =\pi(x_*)Q(x_*,x_t)$,则接受转移$x_t\ \to\ x_*$,即$x_{t+1} = x_*$</li>
+<li>否则不接受转移,即$x_{t+1} = x_t$</li>
 </ul>
-<p>预测概率为:</p>
+</li>
+</ol>
+<p>样本集$(x_{n_1},x_{n_1+1},&hellip;,x_{n_1+n_2-1})$即为所需平稳分布对应的样本集.</p>
+<p>以上即为MCMC采样,但是存在一个问题,实际过程各种$\alpha(x_t,x_*)$可能非常小,可能大部分采样被拒绝了,采样效率比较低.</p>
+<h2 id="m-h采样">M-H采样</h2>
+<p>M-H采样是Metropolis-Hastings采样的简称,这个算法首先由Metropolis提出,被Hastings改进,因此被称之为Metropolis-Hastings采样或M-H采样。(M-H采样解决了MCMC采样接受率过低的问题。)
+回到MCMC采样的细致平稳条件:
+$$\pi(i)Q(i,j)\alpha(i,j) = \pi(j)Q(j,i)\alpha(j,i)$$
+采样效率低的原因是因为$\alpha(i,j)$太小了,比如0.1,而$\alpha(j,i)$为0.2
+$$\pi(i)Q(i,j)*0.1 = \pi(j)Q(j,i)*0.2$$
+若两边同时扩大五倍,接受率提高到了0.5,但是细致平稳条件仍然是满足的,即:
+$$\pi(i)Q(i,j)*0.5 = \pi(j)Q(j,i)$$
+所以对接受率可以进行如下改进,即:
+$$\alpha(i,j) = \min\{ \frac{\pi(j)Q(j,i)}{\pi(i)Q(i,j)},1\}$$</p>
+<ol>
+<li>输入任意选定的马尔科夫链状态转移矩阵$Q$,平稳分布$\pi(x)$,状态转移次数阈值$n_1$,需要的样本个数$n_2$</li>
+<li>从任意简单概率分布采样得到初始状态值$x_0$</li>
+<li>$for\ t\ =\ 0\ to\ n_1\ +\ n_2\ -1:$
 <ul>
-<li>$P(\hat{Y} = 0) = \frac{1}{1 + e^{-x}} = \hat{p}$</li>
-<li>$P(\hat{Y} = 1) = 1 - \frac{1}{1 + e^{-x}} = 1 - \hat{p}$</li>
+<li>从条件概率分布$Q(x|x_t)$中采样得到样本$x_*$</li>
+<li>从均匀分布采样$u$服从$uniform[0,1]$</li>
+<li>如果$u &lt; \alpha(x_t,x_*) = \min\{ \frac{\pi(j)Q(j,i)}{\pi(i)Q(i,j)},1\}$,则接受转移$x_t\ \to\ x_*$,即$x_{t+1} = x_*$</li>
+<li>否则不接受转移,即$x_{t+1} = x_t$</li>
 </ul>
-<p>交叉熵被定义为:
-$$CE(p,\hat{p}) = -(p\log{\hat{p}}+(1 - p)\log{(1 - \hat{p})})$$</p>
-<p>tips:</p>
-<ul>
-<li>在<code>Keras</code>中,这个损失被定义为<code>binary_crossentropy(y_true, y_pred)</code></li>
-<li>在<code>TensorFlow</code>,被定义为<code>softmax_cross_entropy_with_logits_v2</code></li>
-</ul>
-<h1 id="weighted-cross-entropy带权交叉熵">Weighted cross entropy(带权交叉熵)</h1>
-<p>将所有的positive样本都通过系数$\beta$赋予一个权重
-在一些样本类别不均衡的数据中,例如一张图片90%是黑像素,10%是白像素,普通的交叉熵效果不一定很好,所以定义了如下的带权交叉熵
-$$WCE(p,\hat
-{p}) = -(\beta p\log{\hat{p}} + (1 - p)\log{(1 - \hat{p})})$$</p>
-<ul>
-<li>当$\beta &gt; 1$时,会减少false negatives</li>
-<li>当$\beta &lt; 1$时,会减少false positives</li>
-</ul>
-<p>tips:</p>
-<ul>
-<li>在<code>TensorFlow</code>中,该损失被定义为:<code>weighted_cross_entropy_with_logits</code></li>
-</ul>
+</li>
+</ol>
+<p>样本集$(x_{n_1},x_{n_1+1},&hellip;,x_{n_1+n_2-1})$即为所需平稳分布对应的样本集.</p>
+<p>tips:很多情况下Q是对称的,即满足$Q(i,j) = Q(j,i)$,所以可以简化接受率为:
+$$\alpha(i,j) = \min\{\frac{\pi(j)}{\pi(i)},1\}$$</p>
     </div>
 
     
 <footer class="post-footer">
       <div class="post-tags">
+          <a href="/tags/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B/">蒙特卡洛</a>
+          <a href="/tags/mcmc/">MCMC</a>
           <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-          <a href="/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">损失函数</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F/">
+        <a class="prev" href="/post/mcmc-part2/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">重新理解贝叶斯公式</span>
+            <span class="prev-text nav-default">MCMC(马尔科夫-蒙特卡洛)#2</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/softmax%E7%9A%84%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98/">
-            <span class="next-text nav-default">Softmax的溢出问题</span>
+        <a class="next" href="/post/mcmc-part4/">
+            <span class="next-text nav-default">MCMC(马尔科夫-蒙特卡洛)#4</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

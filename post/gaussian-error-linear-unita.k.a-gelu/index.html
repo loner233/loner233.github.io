@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Loner" /><meta name="description" content="" />
+<meta name="author" content="Loner" /><meta name="description" content="正态分布 得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+" />
 
 
 
@@ -40,13 +41,15 @@
 
 
 <meta property="og:title" content="Gaussian Error Linear Unit(A.K.A gelu)" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="正态分布
+得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://loner233.github.io/post/gaussian-error-linear-unita.k.a-gelu/" />
 <meta property="article:published_time" content="2019-09-19T09:10:00+08:00" />
 <meta property="article:modified_time" content="2019-09-19T09:10:00+08:00" />
 <meta itemprop="name" content="Gaussian Error Linear Unit(A.K.A gelu)">
-<meta itemprop="description" content="">
+<meta itemprop="description" content="正态分布
+得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$">
 <meta itemprop="datePublished" content="2019-09-19T09:10:00+08:00" />
 <meta itemprop="dateModified" content="2019-09-19T09:10:00+08:00" />
 <meta itemprop="wordCount" content="980">
@@ -56,7 +59,8 @@
 <meta itemprop="keywords" content="激活函数,深度学习," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Gaussian Error Linear Unit(A.K.A gelu)"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="正态分布
+得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -141,37 +145,41 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#正态分布">正态分布</a></li>
-    <li><a href="#累积分布函数">累积分布函数</a></li>
-    <li><a href="#gelu">GELU</a></li>
-    <li><a href="#论文中的两点建议">论文中的两点建议:</a></li>
+    <li>
+      <ul>
+        <li><a href="#正态分布">正态分布</a></li>
+        <li><a href="#累积分布函数">累积分布函数</a></li>
+        <li><a href="#gelu">GELU</a></li>
+        <li><a href="#论文中的两点建议">论文中的两点建议:</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h1 id="正态分布">正态分布</h1>
-<p>得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
-此时,当$(\mu=0,\sigma=1)$,正态分布就变成了所谓的标准正态分布$~N(0,1)$,其密度函数为:$$f(x)= \frac{1}{\sqrt[]{2\pi}}e^{-\frac{x^2}{2}}$$</p>
-<h1 id="累积分布函数">累积分布函数</h1>
+      <h2 id="正态分布">正态分布</h2>
+<p>得从正态分布$X ～ N(\mu,\sigma^2)$开始说起,其密度函数为:$$f(x) = \frac{1}{\sigma\sqrt[]{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
+<p>此时,当$(\mu=0,\sigma=1)$,正态分布就变成了所谓的标准正态分布$~N(0,1)$,其密度函数为:$$f(x)= \frac{1}{\sqrt[]{2\pi}}e^{-\frac{x^2}{2}}$$</p>
+<h2 id="累积分布函数">累积分布函数</h2>
 <p>$$F(x) = P(X \leq x) = \frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{x}e^{-\frac{(t-\mu)^2}{2\sigma^2}}dt$$以上正态分布的累积分布函数能够由一个叫做误差函数的特殊函数表示:$$\Phi(x) = \frac{1}{2}[1 + erf(\frac{z-\mu}{\sigma\sqrt{2}})]$$
 通常来说,以上的$\Phi(x)$都是指的是标准正态分布的累积分布函数,即$(\mu=0,\sigma=1)$,此时:$$\Phi(x)=\frac{1}{2}[1+erf(\frac{x}{\sqrt{2}})]$$其中误差函数被定义为:$$erf(\beta) = \frac{2}{\sqrt{\pi}}\int_0^{\beta}e^{-y^2}dy$$</p>
 <p>误差函数有如下的性质:</p>
 <p>$$erf(-\beta) = -erf(\beta)$$
 $$erf(\infty) = 1$$
 对于均值为$\alpha$,方差$\sigma^2$的正态分布,其取值落在$(\alpha - \beta\sigma,\alpha+\beta\sigma)$内的概率为:$erf(\frac{\beta}{\sqrt{2}})$</p>
-<h1 id="gelu">GELU</h1>
+<h2 id="gelu">GELU</h2>
 <p>高斯误差线性单元被定义为:$$GELU(x) = xP(X \leq x) = x\Phi(x)$$
 特别地,以上$\Phi(x)$是正态分布的累积分布函数,所以就有两个超参数$\mu,\sigma$,通常这两个值都是按照标准正态分布来设置的</p>
-<h1 id="论文中的两点建议">论文中的两点建议:</h1>
+<h2 id="论文中的两点建议">论文中的两点建议:</h2>
 <ol>
 <li>
 <p>在深度学习中如果选择GELU的作为激活函数来训练的话,使用一个带有动量的优化器会比较好
 选择一个正态分布的累积分布函数的近似是非重要</p>
 </li>
 <li>
-<p>Sigmoid是一种累积分布函数的近似,使用Sigmoid Linear Unit(SiLU)$x\sigma(x)$的效果比GELU差，但是比ReLU和ELU好</p>
-<p>所以，通常使用：
+<p>Sigmoid是一种累积分布函数的近似,使用Sigmoid Linear Unit(SiLU)$x\sigma(x)$的效果比GELU差，但是比ReLU和ELU好<br>
+所以，通常使用：
 $$x\sigma(1.702x)$$
 或者：
 $$0.5x(1+tanh[\sqrt{\frac{2}{\pi}}(x+ 0.044715x^3)])$$

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>图像分割的损失函数 - Castle of Glass</title>
+  <title>MCMC(马尔科夫-蒙特卡洛)#0 - Castle of Glass</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Loner" /><meta name="description" content="" />
+<meta name="author" content="Loner" /><meta name="description" content="假设观测数据由随机变量$y \in Y$表示,模型由随机变量$x \in X$表示. 贝叶斯学习通过贝叶斯定理计算给定数据条件下模型的后验概率,并选择后验概率最大的模型.
+" />
 
 
 
@@ -26,7 +27,7 @@
 <meta name="generator" content="Hugo 0.76.3 with theme even" />
 
 
-<link rel="canonical" href="http://loner233.github.io/post/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" />
+<link rel="canonical" href="http://loner233.github.io/post/mcmc-part0/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,24 +40,27 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="图像分割的损失函数" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="MCMC(马尔科夫-蒙特卡洛)#0" />
+<meta property="og:description" content="假设观测数据由随机变量$y \in Y$表示,模型由随机变量$x \in X$表示.
+贝叶斯学习通过贝叶斯定理计算给定数据条件下模型的后验概率,并选择后验概率最大的模型." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://loner233.github.io/post/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" />
-<meta property="article:published_time" content="2020-10-11T11:32:40+08:00" />
-<meta property="article:modified_time" content="2020-10-11T11:32:40+08:00" />
-<meta itemprop="name" content="图像分割的损失函数">
-<meta itemprop="description" content="">
-<meta itemprop="datePublished" content="2020-10-11T11:32:40+08:00" />
-<meta itemprop="dateModified" content="2020-10-11T11:32:40+08:00" />
-<meta itemprop="wordCount" content="393">
+<meta property="og:url" content="http://loner233.github.io/post/mcmc-part0/" />
+<meta property="article:published_time" content="2020-10-11T15:11:08+08:00" />
+<meta property="article:modified_time" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="name" content="MCMC(马尔科夫-蒙特卡洛)#0">
+<meta itemprop="description" content="假设观测数据由随机变量$y \in Y$表示,模型由随机变量$x \in X$表示.
+贝叶斯学习通过贝叶斯定理计算给定数据条件下模型的后验概率,并选择后验概率最大的模型.">
+<meta itemprop="datePublished" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="dateModified" content="2020-10-11T15:11:08+08:00" />
+<meta itemprop="wordCount" content="281">
 
 
 
-<meta itemprop="keywords" content="深度学习,损失函数," />
+<meta itemprop="keywords" content="蒙特卡洛,MCMC,深度学习," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="图像分割的损失函数"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="MCMC(马尔科夫-蒙特卡洛)#0"/>
+<meta name="twitter:description" content="假设观测数据由随机变量$y \in Y$表示,模型由随机变量$x \in X$表示.
+贝叶斯学习通过贝叶斯定理计算给定数据条件下模型的后验概率,并选择后验概率最大的模型."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -123,14 +127,14 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">图像分割的损失函数</h1>
+      <h1 class="post-title">MCMC(马尔科夫-蒙特卡洛)#0</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2020-10-11 </span>
         <div class="post-category">
             <a href="/categories/algorithm/"> Algorithm </a>
             </div>
-          <span class="more-meta"> 393 words </span>
+          <span class="more-meta"> 281 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -141,60 +145,51 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#cross-entropy交叉熵">Cross Entropy(交叉熵)</a></li>
-    <li><a href="#weighted-cross-entropy带权交叉熵">Weighted cross entropy(带权交叉熵)</a></li>
+    <li>
+      <ul>
+        <li><a href="#后验概率">后验概率:</a></li>
+        <li><a href="#三种积分运算">三种积分运算</a>
+          <ul>
+            <li><a href="#规范化normalization">规范化(normalization)</a></li>
+            <li><a href="#边缘化marginaliztion">边缘化(marginaliztion)</a></li>
+            <li><a href="#数学期望expection">数学期望(expection)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h1 id="cross-entropy交叉熵">Cross Entropy(交叉熵)</h1>
-<p>假设真实概率:</p>
-<ul>
-<li>$P(Y = 0) = p$</li>
-<li>$P(Y = 1) = 1 - p$</li>
-</ul>
-<p>预测概率为:</p>
-<ul>
-<li>$P(\hat{Y} = 0) = \frac{1}{1 + e^{-x}} = \hat{p}$</li>
-<li>$P(\hat{Y} = 1) = 1 - \frac{1}{1 + e^{-x}} = 1 - \hat{p}$</li>
-</ul>
-<p>交叉熵被定义为:
-$$CE(p,\hat{p}) = -(p\log{\hat{p}}+(1 - p)\log{(1 - \hat{p})})$$</p>
-<p>tips:</p>
-<ul>
-<li>在<code>Keras</code>中,这个损失被定义为<code>binary_crossentropy(y_true, y_pred)</code></li>
-<li>在<code>TensorFlow</code>,被定义为<code>softmax_cross_entropy_with_logits_v2</code></li>
-</ul>
-<h1 id="weighted-cross-entropy带权交叉熵">Weighted cross entropy(带权交叉熵)</h1>
-<p>将所有的positive样本都通过系数$\beta$赋予一个权重
-在一些样本类别不均衡的数据中,例如一张图片90%是黑像素,10%是白像素,普通的交叉熵效果不一定很好,所以定义了如下的带权交叉熵
-$$WCE(p,\hat
-{p}) = -(\beta p\log{\hat{p}} + (1 - p)\log{(1 - \hat{p})})$$</p>
-<ul>
-<li>当$\beta &gt; 1$时,会减少false negatives</li>
-<li>当$\beta &lt; 1$时,会减少false positives</li>
-</ul>
-<p>tips:</p>
-<ul>
-<li>在<code>TensorFlow</code>中,该损失被定义为:<code>weighted_cross_entropy_with_logits</code></li>
-</ul>
+      <p>假设观测数据由随机变量$y \in Y$表示,模型由随机变量$x \in X$表示.
+贝叶斯学习通过贝叶斯定理计算给定数据条件下模型的后验概率,并选择后验概率最大的模型.</p>
+<h2 id="后验概率">后验概率:</h2>
+<p>$$p(x|y) = \frac{p(x)p(y|x)}{\int_xp(y|x')p(x')dx'}$$</p>
+<h2 id="三种积分运算">三种积分运算</h2>
+<h3 id="规范化normalization">规范化(normalization)</h3>
+<p>后验概率中需要规范化计算:
+$$\int_xp(y|x')p(x')dx'$$</p>
+<h3 id="边缘化marginaliztion">边缘化(marginaliztion)</h3>
+<p>如果有隐变量$z \in Z$,后验概率的计算需要边缘化计算
+$$p(x|y) = \int_zp(x,z|y)dz$$</p>
+<h3 id="数学期望expection">数学期望(expection)</h3>
+<p>如果有一个函数$f(x)$,可以计算该函数的关于后验概率分布的数学期望:
+$$E_{P(x|y)}[f(x)] = \int_xf(x)p(x|y)dx$$</p>
+<p>当观测数据和模型都很复杂的时候,以上积分会变得非常难以计算,MCMC为这些积分的计算提供了一个通用有效的解决方案.</p>
     </div>
 
     
 <footer class="post-footer">
       <div class="post-tags">
+          <a href="/tags/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B/">蒙特卡洛</a>
+          <a href="/tags/mcmc/">MCMC</a>
           <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-          <a href="/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">损失函数</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">重新理解贝叶斯公式</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/post/softmax%E7%9A%84%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98/">
-            <span class="next-text nav-default">Softmax的溢出问题</span>
+        
+        <a class="next" href="/post/mcmc-part1/">
+            <span class="next-text nav-default">MCMC(马尔科夫-蒙特卡洛)#1</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

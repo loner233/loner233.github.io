@@ -6,14 +6,60 @@
     <description>Recent content in 蒙特卡洛 on Castle of Glass</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Oct 2020 11:39:57 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Oct 2020 15:11:08 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#0</title>
+      <link>http://loner233.github.io/post/mcmc-part0/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part0/</guid>
+      <description>&lt;p&gt;假设观测数据由随机变量$y \in Y$表示,模型由随机变量$x \in X$表示.
+贝叶斯学习通过贝叶斯定理计算给定数据条件下模型的后验概率,并选择后验概率最大的模型.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>MCMC(马尔科夫-蒙特卡洛)#1</title>
       <link>http://loner233.github.io/post/mcmc-part1/</link>
-      <pubDate>Sun, 11 Oct 2020 11:39:57 +0800</pubDate>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
       
       <guid>http://loner233.github.io/post/mcmc-part1/</guid>
       <description>&lt;p&gt;很多人都会用圆周率的例子来解释蒙特卡罗方法，这个真的没什么用，没人能够从这个例子里面理解什么是MCMC，接下来开个坑，花几天搞完这儿个东西。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#2</title>
+      <link>http://loner233.github.io/post/mcmc-part2/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part2/</guid>
+      <description>&lt;p&gt;马尔科夫链的定义比较简单,它假设某一时刻状态转移的概率只依赖于它的前一个状态.
+假设状态序列是$&amp;hellip;,X_{t-2},X_{t-1},X_{t},X_{t+1},&amp;hellip;$那么我们在$X_{t+1}$的状态条件概率仅仅依赖于$X_t$时刻,即:
+$$P(X_{t+1}|&amp;hellip;X_{t-2},X_{t-1},X_{t}) = P(X_{t+1}|X_{t})$$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#3</title>
+      <link>http://loner233.github.io/post/mcmc-part3/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part3/</guid>
+      <description>&lt;h2 id=&#34;细致平稳条件&#34;&gt;细致平稳条件&lt;/h2&gt;
+&lt;p&gt;如果非周期马尔科夫链的状态转移矩阵$P$和概率分布$\pi(x)$对于所有的$i,j$满足:
+$$\pi(i)P(i,j) = \pi(j)P(j,i)$$
+则称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MCMC(马尔科夫-蒙特卡洛)#4</title>
+      <link>http://loner233.github.io/post/mcmc-part4/</link>
+      <pubDate>Sun, 11 Oct 2020 15:11:08 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/mcmc-part4/</guid>
+      <description>&lt;h2 id=&#34;gibbs采样&#34;&gt;Gibbs采样&lt;/h2&gt;
+&lt;h3 id=&#34;细致平稳条件&#34;&gt;细致平稳条件&lt;/h3&gt;
+&lt;p&gt;回到细致平稳条件,如果不采用MCMC的方法(加上一个建议分布), 想要满足下式
+$$\pi(i)P(i,j) = \pi(j)P(j,i)$$
+以二维数据分布开始,假设$\pi(x_1,x_2)$是一个二维联合数据分布.&lt;/p&gt;</description>
     </item>
     
   </channel>
