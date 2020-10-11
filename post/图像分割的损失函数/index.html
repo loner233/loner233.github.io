@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Loner" /><meta name="description" content="图像分割的损失函数 Cross Entropy(交叉熵) 假设真实概率:
+<meta name="author" content="Loner" /><meta name="description" content="Cross Entropy(交叉熵) 假设真实概率:
  $P(Y = 0) = p$ $P(Y = 1) = 1 - p$  预测概率为:
  $P(\hat{Y} = 0) = \frac{1}{1 &#43; e^{-x}} = \hat{p}$ $P(\hat{Y} = 1) = 1 - \frac{1}{1 &#43; e^{-x}} = 1 - \hat{p}$ " />
 
@@ -42,8 +42,7 @@
 
 
 <meta property="og:title" content="图像分割的损失函数" />
-<meta property="og:description" content="图像分割的损失函数
-Cross Entropy(交叉熵)
+<meta property="og:description" content="Cross Entropy(交叉熵)
 假设真实概率:
 
 $P(Y = 0) = p$
@@ -59,8 +58,7 @@ $P(\hat{Y} = 1) = 1 - \frac{1}{1 &#43; e^{-x}} = 1 - \hat{p}$
 <meta property="article:published_time" content="2020-10-11T11:32:40+08:00" />
 <meta property="article:modified_time" content="2020-10-11T11:32:40+08:00" />
 <meta itemprop="name" content="图像分割的损失函数">
-<meta itemprop="description" content="图像分割的损失函数
-Cross Entropy(交叉熵)
+<meta itemprop="description" content="Cross Entropy(交叉熵)
 假设真实概率:
 
 $P(Y = 0) = p$
@@ -73,15 +71,14 @@ $P(\hat{Y} = 1) = 1 - \frac{1}{1 &#43; e^{-x}} = 1 - \hat{p}$
 ">
 <meta itemprop="datePublished" content="2020-10-11T11:32:40+08:00" />
 <meta itemprop="dateModified" content="2020-10-11T11:32:40+08:00" />
-<meta itemprop="wordCount" content="426">
+<meta itemprop="wordCount" content="417">
 
 
 
 <meta itemprop="keywords" content="深度学习,损失函数," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="图像分割的损失函数"/>
-<meta name="twitter:description" content="图像分割的损失函数
-Cross Entropy(交叉熵)
+<meta name="twitter:description" content="Cross Entropy(交叉熵)
 假设真实概率:
 
 $P(Y = 0) = p$
@@ -165,7 +162,7 @@ $P(\hat{Y} = 1) = 1 - \frac{1}{1 &#43; e^{-x}} = 1 - \hat{p}$
         <div class="post-category">
             <a href="/categories/algorithm/"> Algorithm </a>
             </div>
-          <span class="more-meta"> 426 words </span>
+          <span class="more-meta"> 417 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -173,8 +170,7 @@ $P(\hat{Y} = 1) = 1 - \frac{1}{1 &#43; e^{-x}} = 1 - \hat{p}$
 
     
     <div class="post-content">
-      <h1 id="图像分割的损失函数">图像分割的损失函数</h1>
-<h2 id="cross-entropy交叉熵">Cross Entropy(交叉熵)</h2>
+      <h1 id="cross-entropy交叉熵">Cross Entropy(交叉熵)</h1>
 <p>假设真实概率:</p>
 <ul>
 <li>$P(Y = 0) = p$</li>
@@ -192,7 +188,7 @@ $$CE(p,\hat{p}) = -(p\log{\hat{p}}+(1 - p)\log{(1 - \hat{p})})$$</p>
 <li>在<code>Keras</code>中,这个损失被定义为<code>binary_crossentropy(y_true, y_pred)</code></li>
 <li>在<code>TensorFlow</code>,被定义为<code>softmax_cross_entropy_with_logits_v2</code></li>
 </ul>
-<h2 id="weighted-cross-entropy带权交叉熵">Weighted cross entropy(带权交叉熵)</h2>
+<h1 id="weighted-cross-entropy带权交叉熵">Weighted cross entropy(带权交叉熵)</h1>
 <p>将所有的positive样本都通过系数$\beta$赋予一个权重
 在一些样本类别不均衡的数据中,例如一张图片90%是黑像素,10%是白像素,普通的交叉熵效果不一定很好,所以定义了如下的带权交叉熵
 $$WCE(p,\hat
