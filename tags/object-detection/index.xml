@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Object Detection on Castle of Glass</title>
+    <link>http://loner233.github.io/tags/object-detection/</link>
+    <description>Recent content in Object Detection on Castle of Glass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Oct 2020 12:37:29 +0800</lastBuildDate><atom:link href="http://loner233.github.io/tags/object-detection/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RLE Functions   Run Lenght Encode &amp; Decode</title>
+      <link>http://loner233.github.io/post/rle-functions-run-lenght-encode-decode/</link>
+      <pubDate>Wed, 14 Oct 2020 12:37:29 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/rle-functions-run-lenght-encode-decode/</guid>
+      <description>&lt;p&gt;这次kaggle有两个目标检测的题目，给的数据是一个csv文件表示检测到的对象和被检测的原始图像
+这个scv文件很奇怪&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

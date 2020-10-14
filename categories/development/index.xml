@@ -6,7 +6,26 @@
     <description>Recent content in Development on Castle of Glass</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Oct 2020 20:46:41 +0800</lastBuildDate><atom:link href="http://loner233.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Oct 2020 12:37:29 +0800</lastBuildDate><atom:link href="http://loner233.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RLE Functions   Run Lenght Encode &amp; Decode</title>
+      <link>http://loner233.github.io/post/rle-functions-run-lenght-encode-decode/</link>
+      <pubDate>Wed, 14 Oct 2020 12:37:29 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/rle-functions-run-lenght-encode-decode/</guid>
+      <description>&lt;p&gt;这次kaggle有两个目标检测的题目，给的数据是一个csv文件表示检测到的对象和被检测的原始图像
+这个scv文件很奇怪&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Protocol Buffer(proto3)</title>
+      <link>http://loner233.github.io/post/protocol-bufferproto3/</link>
+      <pubDate>Wed, 14 Oct 2020 12:29:10 +0800</pubDate>
+      
+      <guid>http://loner233.github.io/post/protocol-bufferproto3/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>使用Matplotlib画实时更新的图</title>
       <link>http://loner233.github.io/post/%E4%BD%BF%E7%94%A8matplotlib%E7%94%BB%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9B%BE/</link>

@@ -45,7 +45,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://loner233.github.io/" />
-<meta property="og:updated_time" content="2020-10-11T20:46:41+08:00" />
+<meta property="og:updated_time" content="2020-10-14T12:37:29+08:00" />
 <meta itemprop="name" content="Castle of Glass">
 <meta itemprop="description" content="">
 <meta name="twitter:card" content="summary"/>
@@ -115,6 +115,67 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/python%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/">Python上下文管理器</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-10-11 </span>
+      <div class="post-category">
+          <a href="/categories/development/"> Development </a>
+          </div>
+        <span class="more-meta"> 334 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p><code>with</code>是最广泛使用的上下文管理器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;test/test.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+    <div class="read-more">
+      <a href="/post/python%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/python%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/">Python重载运算符</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-10-11 </span>
+      <div class="post-category">
+          <a href="/categories/development/"> Development </a>
+          </div>
+        <span class="more-meta"> 1229 words </span>
+        <span class="more-meta"> 3 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <ul>
+<li>不能重载内置类型的运算符</li>
+<li>不能新建运算符，只能重载现有运算符</li>
+<li>某些运算符不能重载——<code>is</code>、<code>and</code>、<code>or</code> 和 <code>not</code></li>
+</ul>
+    </div>
+    <div class="read-more">
+      <a href="/post/python%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/numpy%E4%B8%AD%E7%9A%84outer%E7%9A%84%E5%BA%94%E7%94%A8/">Numpy中的outer的应用</a></h1>
@@ -187,67 +248,6 @@
     </div>
     <div class="read-more">
       <a href="/post/tf%E4%B8%AD%E7%9A%84gradienttape/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/tf%E4%B8%AD%E7%9A%84low-level-api/">tf中的low Level Api</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-10-11 </span>
-      <div class="post-category">
-          <a href="/categories/coding/"> Coding </a>
-          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"> 深度学习 </a>
-          </div>
-        <span class="more-meta"> 1783 words </span>
-        <span class="more-meta"> 4 mins read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>最近用了几次tensorflow的高阶api，发现构建自己的算法的时候还是有很大的局限性，再用回低阶api的时候发现自己蠢哭了，竟然不会写了，乘此机会复习复习，顺便看看新的特性。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/tf%E4%B8%AD%E7%9A%84low-level-api/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/tf.keras%E4%B8%ADcustom%E5%B1%82/">tf.keras中Custom层</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-10-11 </span>
-      <div class="post-category">
-          <a href="/categories/coding/"> Coding </a>
-          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"> 深度学习 </a>
-          </div>
-        <span class="more-meta"> 506 words </span>
-        <span class="more-meta"> 2 mins read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>正常情况下使用tf的层</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>                                                             
-<span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>                                      
-<span class="n">layer</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>                                                             
-</code></pre></td></tr></table>
-</div>
-</div>
-    </div>
-    <div class="read-more">
-      <a href="/post/tf.keras%E4%B8%ADcustom%E5%B1%82/" class="read-more-link">Read more...</a>
     </div>
   </div>
 </article>
